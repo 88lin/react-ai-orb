@@ -1,8 +1,9 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import "./styles.css";
 import { SvgElements } from "../SvgElements/SvgElements";
 import { colorPalettes } from "../../palette/colorPalettes";
 import {
+  baseAnimationDuration,
   baseOrbSize,
   baseShapeSize,
   defaultAnimationSpeedBase,
@@ -13,8 +14,23 @@ import {
   defaultMainOrbHueAnimation,
   defaultNoShadowValue,
   defaultSize,
+  hueAnimationName,
+  referenceAnimationSpeed,
+  rotationAnimationName,
 } from "../../constants";
 import { ReactAIOrbProps } from "../../types";
+
+// A CSSAnimation exposes the keyframe name it was created from, plain Web
+// Animations (created by consumers) do not.
+type NamedAnimation = Animation & { animationName?: string };
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+const toPlaybackRate = (speed: number) => {
+  const rate = speed / referenceAnimationSpeed;
+  return Number.isFinite(rate) && rate >= 0 ? rate : 1;
+};
 
 export const Orb = ({
   palette = colorPalettes.cosmicNebula,
@@ -27,6 +43,8 @@ export const Orb = ({
   blobBOpacity = defaultBlobBOpacity,
   noShadow = defaultNoShadowValue,
 }: ReactAIOrbProps) => {
+  const orbRef = useRef<HTMLDivElement>(null);
+
   const cssVariables = useMemo(
     () =>
       ({
@@ -57,8 +75,8 @@ export const Orb = ({
         "--shape-d-end": palette.shapeDEnd,
         "--blob-a-opacity": blobAOpacity,
         "--blob-b-opacity": blobBOpacity,
-        "--animation-rotation-speed-base": `${1 / (animationSpeedBase * 0.5)}s`,
-        "--animation-hue-speed-base": `${1 / (animationSpeedHue * 0.5)}s`,
+        "--animation-rotation-speed-base": `${baseAnimationDuration}s`,
+        "--animation-hue-speed-base": `${baseAnimationDuration}s`,
         "--hue-rotation": `${hueRotation}deg`,
         "--main-hue-animation": mainOrbHueAnimation
           ? "hueShift var(--animation-hue-speed-base) linear infinite"
@@ -67,17 +85,47 @@ export const Orb = ({
     [
       palette,
       size,
-      animationSpeedBase,
-      animationSpeedHue,
       hueRotation,
       mainOrbHueAnimation,
       blobAOpacity,
       blobBOpacity,
+      noShadow,
     ]
   );
 
+  // Speed props drive the playbackRate of the already running animations, so the
+  // orb keeps spinning from wherever it is instead of restarting.
+  useIsomorphicLayoutEffect(() => {
+    const orb = orbRef.current;
+    if (!orb || typeof orb.getAnimations !== "function") return;
+
+    const rateByAnimationName = new Map([
+      [rotationAnimationName, toPlaybackRate(animationSpeedBase)],
+      [hueAnimationName, toPlaybackRate(animationSpeedHue)],
+    ]);
+
+    orb.getAnimations({ subtree: true }).forEach((animation) => {
+      const name = (animation as NamedAnimation).animationName;
+      if (!name) return;
+
+      const rate = rateByAnimationName.get(name);
+      if (rate === undefined) return;
+
+      if (typeof animation.updatePlaybackRate === "function") {
+        // Applied once the animation is ready, so the new speed takes over
+        // without a visible step. Direct assignment is the older fallback.
+        animation.updatePlaybackRate(rate);
+      } else {
+        animation.playbackRate = rate;
+      }
+    });
+    // mainOrbHueAnimation adds or removes an animation, so its rate has to be
+    // reapplied when it toggles.
+  }, [animationSpeedBase, animationSpeedHue, mainOrbHueAnimation]);
+
   return (
     <div
+      ref={orbRef}
       style={{
         ...cssVariables,
       }}

@@ -35,8 +35,8 @@ import { Orb } from "react-ai-orb";
 |-----------------------|-------------|-----------------|-----------------------------------------------------------------------------|
 | `palette`            | `OrbPalette` | `cosmicNebula`     | Defines the color palette for the orb. Use predefined palettes or create custom ones. |
 | `size`               | `number`     | `1`     | Sets the size of the orb.                                                   |
-| `animationSpeedBase` | `number`     | `1`     | Determines the base speed of the rotation animation.                     |
-| `animationSpeedHue`  | `number`     | `1`     | Sets the speed of the hue animation.                             |
+| `animationSpeedBase` | `number`     | `1`     | Determines the base speed of the rotation animation. Can be updated at runtime — the orb speeds up or slows down from its current position instead of restarting. |
+| `animationSpeedHue`  | `number`     | `1`     | Sets the speed of the hue animation. Can also be updated at runtime without restarting the animation. |
 | `hueRotation`        | `number`     | `120`     | Adjusts the hue rotation degree for the orb colors.                         |
 | `mainOrbHueAnimation`| `boolean`    | `false`     | Enables or disables the hue animation on the main orb.                      |
 | `blobAOpacity`       | `number`     | `0.3`     | Controls the opacity of blob A (range: 0 to 1).                             |

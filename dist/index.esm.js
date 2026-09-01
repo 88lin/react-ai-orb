@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useRef, useMemo, useLayoutEffect, useEffect } from 'react';
 
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
@@ -216,13 +216,28 @@ const baseShapeSize = 72; // Base size of the inner shapes in px
 const defaultSize = 1;
 const defaultAnimationSpeedBase = 1;
 const defaultAnimationSpeedHue = 1;
+// Animation durations in the stylesheet are derived from this reference speed and
+// never change. Speed props are applied at runtime through the Web Animations
+// playbackRate instead, because rewriting animation-duration makes every running
+// animation jump back to its starting frame.
+const referenceAnimationSpeed = 1;
+const baseAnimationDuration = 1 / (referenceAnimationSpeed * 0.5); // seconds
+// Keyframe names shared between styles.css and the playbackRate logic.
+const rotationAnimationName = "rotateDiagonal";
+const hueAnimationName = "hueShift";
 const defaultHueRotation = 120;
 const defaultMainOrbHueAnimation = false;
 const defaultBlobAOpacity = 0.3;
 const defaultBlobBOpacity = 0.8;
 const defaultNoShadowValue = false;
 
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+const toPlaybackRate = (speed) => {
+    const rate = speed / referenceAnimationSpeed;
+    return Number.isFinite(rate) && rate >= 0 ? rate : 1;
+};
 const Orb = ({ palette = colorPalettes.cosmicNebula, size = defaultSize, animationSpeedBase = defaultAnimationSpeedBase, animationSpeedHue = defaultAnimationSpeedHue, hueRotation = defaultHueRotation, mainOrbHueAnimation = defaultMainOrbHueAnimation, blobAOpacity = defaultBlobAOpacity, blobBOpacity = defaultBlobBOpacity, noShadow = defaultNoShadowValue, }) => {
+    const orbRef = useRef(null);
     const cssVariables = useMemo(() => ({
         "--react-ai-orb-size": `${size * baseOrbSize}px`,
         "--shapes-size": `${size * baseShapeSize}px`,
@@ -251,8 +266,8 @@ const Orb = ({ palette = colorPalettes.cosmicNebula, size = defaultSize, animati
         "--shape-d-end": palette.shapeDEnd,
         "--blob-a-opacity": blobAOpacity,
         "--blob-b-opacity": blobBOpacity,
-        "--animation-rotation-speed-base": `${1 / (animationSpeedBase * 0.5)}s`,
-        "--animation-hue-speed-base": `${1 / (animationSpeedHue * 0.5)}s`,
+        "--animation-rotation-speed-base": `${baseAnimationDuration}s`,
+        "--animation-hue-speed-base": `${baseAnimationDuration}s`,
         "--hue-rotation": `${hueRotation}deg`,
         "--main-hue-animation": mainOrbHueAnimation
             ? "hueShift var(--animation-hue-speed-base) linear infinite"
@@ -260,14 +275,42 @@ const Orb = ({ palette = colorPalettes.cosmicNebula, size = defaultSize, animati
     }), [
         palette,
         size,
-        animationSpeedBase,
-        animationSpeedHue,
         hueRotation,
         mainOrbHueAnimation,
         blobAOpacity,
         blobBOpacity,
+        noShadow,
     ]);
-    return (React.createElement("div", { style: Object.assign({}, cssVariables) },
+    // Speed props drive the playbackRate of the already running animations, so the
+    // orb keeps spinning from wherever it is instead of restarting.
+    useIsomorphicLayoutEffect(() => {
+        const orb = orbRef.current;
+        if (!orb || typeof orb.getAnimations !== "function")
+            return;
+        const rateByAnimationName = new Map([
+            [rotationAnimationName, toPlaybackRate(animationSpeedBase)],
+            [hueAnimationName, toPlaybackRate(animationSpeedHue)],
+        ]);
+        orb.getAnimations({ subtree: true }).forEach((animation) => {
+            const name = animation.animationName;
+            if (!name)
+                return;
+            const rate = rateByAnimationName.get(name);
+            if (rate === undefined)
+                return;
+            if (typeof animation.updatePlaybackRate === "function") {
+                // Applied once the animation is ready, so the new speed takes over
+                // without a visible step. Direct assignment is the older fallback.
+                animation.updatePlaybackRate(rate);
+            }
+            else {
+                animation.playbackRate = rate;
+            }
+        });
+        // mainOrbHueAnimation adds or removes an animation, so its rate has to be
+        // reapplied when it toggles.
+    }, [animationSpeedBase, animationSpeedHue, mainOrbHueAnimation]);
+    return (React.createElement("div", { ref: orbRef, style: Object.assign({}, cssVariables) },
         React.createElement("div", { className: "orb-main" },
             React.createElement("div", { className: "glass loc-glass" }),
             React.createElement("div", { className: "shape-a loc-a" }),
