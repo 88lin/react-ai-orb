@@ -14,6 +14,9 @@ Install the package via npm:
 ```
 npm i react-ai-orb
 ```
+
+Requires React 19 (`react` and `react-dom` `^19.0.0`) as a peer dependency.
+
 ## 💻 Usage
 ```jsx
 import { Orb } from "react-ai-orb";

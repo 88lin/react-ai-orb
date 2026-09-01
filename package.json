@@ -1,6 +1,6 @@
 {
   "name": "react-ai-orb",
-  "version": "1.0.13",
+  "version": "1.1.0",
   "description": "A beautiful, customizable animated orb component for React applications! Perfect for AI interfaces, assistants, interactive chatbots, or anywhere you need a glowing orb.",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -8,6 +8,7 @@
     "dist"
   ],
   "scripts": {
+    "build": "rollup -c",
     "test": "jest"
   },
   "repository": {
@@ -47,8 +48,8 @@
   },
   "homepage": "https://github.com/Steve0929/react-ai-orb#readme",
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
