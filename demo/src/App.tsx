@@ -347,6 +347,25 @@ export default function App() {
             ? { left: pos.x, top: pos.y, right: "auto", bottom: "auto" }
             : undefined
         }
+        role="button"
+        tabIndex={0}
+        aria-label="实时预览球：按住拖动，或用方向键微调位置"
+        onKeyDown={(e) => {
+          const step = e.shiftKey ? 32 : 8;
+          const el = e.currentTarget;
+          const rect = el.getBoundingClientRect();
+          let { x, y } = pos ?? { x: rect.left, y: rect.top };
+          if (e.key === "ArrowLeft") x -= step;
+          else if (e.key === "ArrowRight") x += step;
+          else if (e.key === "ArrowUp") y -= step;
+          else if (e.key === "ArrowDown") y += step;
+          else return;
+          setPos({
+            x: Math.min(Math.max(8, x), window.innerWidth - rect.width - 8),
+            y: Math.min(Math.max(8, y), window.innerHeight - rect.height - 8),
+          });
+          e.preventDefault();
+        }}
         onPointerDown={(e) => {
           const el = e.currentTarget;
           const rect = el.getBoundingClientRect();
