@@ -45,7 +45,7 @@ type OrbState = {
 };
 
 const defaultState: OrbState = {
-  paletteKey: "oceanDepths",
+  paletteKey: "cosmicNebula",
   size: 1,
   animationSpeedBase: 1,
   animationSpeedHue: 1,
