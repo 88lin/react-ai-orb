@@ -225,66 +225,8 @@ html[data-theme="dark"] .theme-toggle:hover {
   display: inline-block;
 }
 
-/* 滑杆：118px 内联轨道 + 品牌色填充 */
 .knob input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
   width: 118px;
-  height: 20px;
-  background: transparent;
-  margin: 0;
-  cursor: pointer;
-  --track: rgba(var(--ink-rgb), 0.14);
-}
-
-html[data-theme="dark"] .knob input[type="range"] {
-  --track: rgba(255, 255, 255, 0.16);
-}
-
-.knob input[type="range"]::-webkit-slider-runnable-track {
-  height: 4px;
-  border-radius: 999px;
-  background: linear-gradient(
-    to right,
-    var(--brand) var(--fill, 0%),
-    var(--track) var(--fill, 0%)
-  );
-}
-
-.knob input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
-  margin-top: -6px;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 3px solid var(--brand);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
-  transition: transform 0.12s ease;
-}
-
-.knob input[type="range"]:active::-webkit-slider-thumb {
-  transform: scale(1.2);
-  cursor: grabbing;
-}
-
-.knob input[type="range"]::-moz-range-track {
-  height: 4px;
-  border-radius: 999px;
-  background: linear-gradient(
-    to right,
-    var(--brand) var(--fill, 0%),
-    var(--track) var(--fill, 0%)
-  );
-}
-
-.knob input[type="range"]::-moz-range-thumb {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 3px solid var(--brand);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
 }
 
 /* 开关行 */

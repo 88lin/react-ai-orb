@@ -81,7 +81,6 @@ function Slider(props: {
   suffix?: string;
   onChange: (v: number) => void;
 }) {
-  const pct = ((props.value - props.min) / (props.max - props.min)) * 100;
   return (
     <label className="knob" title={`${props.prop}（${props.range}）`}>
       {props.label}
@@ -91,7 +90,6 @@ function Slider(props: {
         max={props.max}
         step={props.step}
         value={props.value}
-        style={{ "--fill": `${pct}%` } as React.CSSProperties}
         onChange={(e) => props.onChange(Number(e.target.value))}
       />
       <span className="val">
