@@ -30,8 +30,6 @@
   --text-dim: var(--ink-light);
   --text-faint: var(--ink-faint);
   --surface: var(--card-bg);
-  --code-bg: var(--dark-panel);
-  --code-text: #c9cbd4;
   --chip-bg: rgba(26, 26, 46, 0.05);
   --shadow-soft: 0 1px 4px rgba(0, 0, 0, 0.04);
   --shadow-lift: 0 8px 40px rgba(0, 0, 0, 0.08);
@@ -43,7 +41,6 @@ html[data-theme="dark"] {
   --text-dim: #c9cbd4;
   --text-faint: #8b8fa0;
   --surface: #1d2130;
-  --code-bg: #0e1119;
   --chip-bg: rgba(255, 255, 255, 0.07);
   --border: rgba(255, 255, 255, 0.09);
   --hairline: rgba(255, 255, 255, 0.07);
@@ -72,50 +69,56 @@ body {
   border-radius: 4px;
 }
 
-/* ---------- 自然紧凑布局：内容紧凑排布，空间不足时自然滚动 ---------- */
+/* ---------- 满屏应用布局：顶栏 / 三列（参数 · 预览 · 预设）/ 代码条 ---------- */
 
-.page {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 20px 24px 28px;
+.app {
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 14px;
 }
 
-/* 窄屏时上下堆叠 */
-@media (max-width: 1000px) {
+/* 窄屏 / 矮屏：恢复文档流，可滚动 */
+@media (max-width: 1100px), (max-height: 620px) {
+  .app {
+    height: auto;
+    min-height: 100vh;
+  }
   .main {
     grid-template-columns: 1fr !important;
   }
+  .preview {
+    min-height: 460px;
+  }
+  .presets {
+    border-left: none !important;
+    border-top: 1px solid var(--hairline);
+  }
+  .preset-grid {
+    grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)) !important;
+    grid-auto-rows: auto !important;
+  }
 }
 
-/* ---------- header：单行 ---------- */
+/* ---------- 顶栏 ---------- */
 
-.header {
+.topbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--hairline);
+  gap: 20px;
+  padding: 0 22px;
+  height: 54px;
   flex-shrink: 0;
+  border-bottom: 1px solid var(--hairline);
 }
 
-.header-left {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-h1 {
+.topbar h1 {
   font-family: "Noto Serif SC", serif;
   font-weight: 900;
-  font-size: 22px;
+  font-size: 21px;
   letter-spacing: -0.02em;
   margin: 0;
-  line-height: 1.2;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .hl {
@@ -133,32 +136,35 @@ h1 {
 }
 
 .subtitle {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   margin: 0;
   font-size: 13px;
   color: var(--text-dim);
-}
-
-.subtitle a {
-  color: var(--brand-deep);
-  text-decoration: underline;
-  text-decoration-color: rgba(var(--brand-rgb), 0.4);
-  text-underline-offset: 3px;
-}
-
-html[data-theme="dark"] .subtitle a {
-  color: var(--highlight);
-  text-decoration-color: rgba(var(--highlight-rgb), 0.4);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .subtitle code {
   font-family: "Fira Code", monospace;
   font-size: 11.5px;
   background: var(--chip-bg);
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.subtitle a {
+  color: var(--brand-deep);
+  text-decoration: none;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+html[data-theme="dark"] .subtitle a {
+  color: var(--highlight);
 }
 
 .theme-toggle {
@@ -179,31 +185,45 @@ html[data-theme="dark"] .subtitle a {
   box-shadow: 0 6px 18px rgba(var(--brand-rgb), 0.25);
 }
 
-/* ---------- main：左控件右预览 ---------- */
+/* ---------- 中部：左参数 / 右预览 ---------- */
 
 .main {
+  flex: 1;
+  min-height: 0;
   display: grid;
-  grid-template-columns: minmax(330px, 400px) 1fr;
-  gap: 16px;
-  align-items: start;
+  grid-template-columns: 300px minmax(0, 1fr) 330px;
 }
 
-/* 左：控制面板 */
-.panel {
+/* 左：参数区，纵向填满 */
+.controls {
+  min-height: 0;
+  overflow-y: auto;
+  padding: 18px 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: var(--shadow-soft);
+  justify-content: center;
+  gap: 26px;
+  border-right: 1px solid var(--hairline);
+}
+
+.control-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.block-label {
+  font-family: "Fira Code", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
 }
 
 .control {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   min-width: 0;
 }
 
@@ -214,6 +234,19 @@ html[data-theme="dark"] .subtitle a {
   gap: 8px;
   font-size: 12px;
   color: var(--text-dim);
+}
+
+.control-label .name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.control-label .name em {
+  font-style: normal;
+  font-family: "Fira Code", monospace;
+  font-size: 10px;
+  color: var(--text-faint);
 }
 
 .control-label strong {
@@ -228,31 +261,37 @@ html[data-theme="dark"] .subtitle a {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 16px;
+  height: 18px;
   background: transparent;
   margin: 0;
   cursor: pointer;
+  --track: rgba(var(--ink-rgb), 0.12);
 }
 
+html[data-theme="dark"] .control input[type="range"] {
+  --track: rgba(255, 255, 255, 0.15);
+}
+
+/* 已选区间用品牌色填充，未选区间保持轨道色 */
 .control input[type="range"]::-webkit-slider-runnable-track {
   height: 4px;
   border-radius: 999px;
-  background: rgba(var(--ink-rgb), 0.12);
-}
-
-html[data-theme="dark"] .control input[type="range"]::-webkit-slider-runnable-track {
-  background: rgba(255, 255, 255, 0.15);
+  background: linear-gradient(
+    to right,
+    var(--brand) var(--fill, 0%),
+    var(--track) var(--fill, 0%)
+  );
 }
 
 .control input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 14px;
-  height: 14px;
-  margin-top: -5px;
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
   border-radius: 50%;
   background: var(--surface);
   border: 2.5px solid var(--brand);
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
   transition: transform 0.12s ease;
 }
 
@@ -260,29 +299,39 @@ html[data-theme="dark"] .control input[type="range"]::-webkit-slider-runnable-tr
   transform: scale(1.15);
 }
 
+.control input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.25);
+  cursor: grabbing;
+}
+
 .control input[type="range"]::-moz-range-track {
   height: 4px;
   border-radius: 999px;
-  background: rgba(var(--ink-rgb), 0.12);
-}
-
-html[data-theme="dark"] .control input[type="range"]::-moz-range-track {
-  background: rgba(255, 255, 255, 0.15);
+  background: linear-gradient(
+    to right,
+    var(--brand) var(--fill, 0%),
+    var(--track) var(--fill, 0%)
+  );
 }
 
 .control input[type="range"]::-moz-range-thumb {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--surface);
   border: 2.5px solid var(--brand);
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.control input[type="range"]:active::-moz-range-thumb {
+  transform: scale(1.25);
+  cursor: grabbing;
 }
 
 .slider-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px 18px;
+  gap: 12px 20px;
 }
 
 @media (max-width: 480px) {
@@ -294,7 +343,7 @@ html[data-theme="dark"] .control input[type="range"]::-moz-range-track {
 .palette-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 7px;
 }
 
 .chip {
@@ -306,7 +355,7 @@ html[data-theme="dark"] .control input[type="range"]::-moz-range-track {
   color: var(--text-dim);
   font-size: 11.5px;
   font-weight: 500;
-  padding: 4px 11px 4px 6px;
+  padding: 5px 12px 5px 7px;
   border-radius: 999px;
   cursor: pointer;
   font-family: "Fira Code", monospace;
@@ -417,105 +466,102 @@ html[data-theme="dark"] .switch {
   border-color: var(--pop);
 }
 
-.code {
-  margin: 0;
-  padding: 12px 14px;
-  background: var(--code-bg);
-  border-radius: 12px;
-  font-size: 11px;
-  line-height: 1.6;
-  font-family: "Fira Code", monospace;
-  color: var(--code-text);
-  overflow: auto;
-  white-space: pre;
-  flex-shrink: 0;
-}
-
-/* 右：上预览下画廊，紧凑相连 */
-.right {
+/* 中：预览列，卡片贴合球体，垂直居中 */
+.preview {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.stage-wrap {
-  display: flex;
+  align-items: center;
   justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+  padding: 16px;
 }
 
-.stage {
+.preview-stage {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: fit-content;
-  padding: 26px;
+  max-width: 100%;
+  padding: clamp(18px, 2.5vw, 32px);
   background: var(--preview-bg);
-  border-radius: 24px;
+  border-radius: 28px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-lift);
+  overflow: hidden;
 }
 
-html[data-theme="dark"] .stage {
+html[data-theme="dark"] .preview-stage {
   background: var(--surface);
 }
 
-.stage-note {
+.preview-note {
   position: absolute;
-  top: 10px;
-  right: 16px;
+  top: 12px;
+  right: 18px;
   font-family: "Caveat", cursive;
   font-size: 18px;
   color: rgba(var(--pop-rgb), 0.75);
   transform: rotate(2deg);
   pointer-events: none;
+  z-index: 1;
 }
 
-/* 画廊：迷你卡紧凑排列 */
-.gallery {
+/* ---------- 右列：预设 3×3 网格填满 ---------- */
+
+.presets {
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding: 16px 18px;
+  border-left: 1px solid var(--hairline);
 }
 
-.gallery-head {
+.presets-head {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
-.gallery-title {
+.presets-title {
   font-family: "Noto Serif SC", serif;
   font-weight: 900;
-  font-size: 16px;
+  font-size: 15px;
 }
 
-.gallery-count {
+.presets-count {
   font-family: "Fira Code", monospace;
   font-size: 11px;
   color: var(--text-faint);
 }
 
-.gallery-hint {
+.presets-hint {
   margin-left: auto;
   font-family: "Caveat", cursive;
   font-size: 16px;
   color: var(--text-faint);
 }
 
-.grid {
+.preset-grid {
+  flex: 1;
+  min-height: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
-  gap: 12px 10px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 10px;
 }
 
 .card {
   position: relative;
   margin: 0;
-  padding: 14px 6px 10px;
+  padding: 12px 8px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 7px;
   background: var(--surface);
   border: 2px dashed var(--brand);
@@ -524,6 +570,10 @@ html[data-theme="dark"] .stage {
   color: inherit;
   font: inherit;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+:is(.theme-toggle, .chip, .toggle, .reset, .copy, .card):active {
+  transform: scale(0.96);
 }
 
 .card[data-tone="1"] {
@@ -552,12 +602,61 @@ html[data-theme="dark"] .stage {
 
 .card-num {
   position: absolute;
-  top: 4px;
-  right: 7px;
+  top: 3px;
+  right: 6px;
   font-family: "Fraunces", serif;
   font-style: italic;
   font-weight: 900;
-  font-size: 15px;
+  font-size: 14px;
   color: rgba(var(--brand-rgb), 0.2);
   pointer-events: none;
+}
+
+/* ---------- 底部代码条 ---------- */
+
+.codebar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--dark-panel);
+  padding: 10px 22px;
+  border-top: 1px solid var(--hairline);
+}
+
+.codebar-label {
+  font-family: "Fira Code", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  color: #8b8fa0;
+  flex-shrink: 0;
+}
+
+.code {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  font-size: 11.5px;
+  line-height: 1.6;
+  font-family: "Fira Code", monospace;
+  color: #c9cbd4;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.copy {
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #c9cbd4;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.copy:hover {
+  border-color: var(--highlight);
+  color: var(--highlight);
 }
