@@ -46,7 +46,7 @@ type OrbState = {
 
 const defaultState: OrbState = {
   paletteKey: "oceanDepths",
-  size: 3,
+  size: 1.4,
   animationSpeedBase: 1,
   animationSpeedHue: 1,
   hueRotation: 120,
@@ -204,17 +204,11 @@ export default function App() {
         </button>
       </header>
 
-      <section className="stage">
-        <Orb {...orbProps} />
-        <div className="stage-meta">
-          <span className="stage-palette">{state.paletteKey}</span>
-          <span>size {state.size}</span>
-          <span>speed {state.animationSpeedBase}x</span>
-          <span>hue {state.hueRotation}°</span>
-        </div>
-      </section>
-
       <section className="controls">
+        <div className="section-head">
+          <span className="block-label">调色板</span>
+          <span className="section-hint">点一下切换</span>
+        </div>
         <div className="chips-row">
           {paletteEntries.map(([name, p]) => (
             <button
@@ -312,11 +306,17 @@ export default function App() {
         </div>
       </section>
 
-      <section className="code-row">
+      <section className="code-window">
+        <div className="titlebar">
+          <span className="tl red" />
+          <span className="tl yellow" />
+          <span className="tl green" />
+          <span className="filename">App.tsx</span>
+          <button type="button" className="copy" onClick={copyCode}>
+            {copied ? "已复制 ✓" : "复制"}
+          </button>
+        </div>
         <pre className="code">{code}</pre>
-        <button type="button" className="copy" onClick={copyCode}>
-          {copied ? "已复制 ✓" : "复制"}
-        </button>
       </section>
 
       <section className="presets">
@@ -340,6 +340,11 @@ export default function App() {
           </button>
         ))}
       </section>
+
+      <div className="floating-preview" aria-hidden="true">
+        <span className="floating-note">实时预览 ✳</span>
+        <Orb {...orbProps} />
+      </div>
     </div>
   );
 }

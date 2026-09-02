@@ -155,41 +155,26 @@ html[data-theme="dark"] .theme-toggle:hover {
   color: var(--highlight);
 }
 
-/* ---------- 预览：暖色底卡片贴合球体 ---------- */
+/* ---------- 悬浮预览：固定右下角，不占版面 ---------- */
 
-.stage {
-  position: relative;
+.floating-preview {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding: 28px;
-  background: var(--preview-bg);
-  border: 1px solid var(--hairline);
-  border-radius: 20px;
+  gap: 4px;
+  pointer-events: none;
 }
 
-html[data-theme="dark"] .stage {
-  background: var(--surface);
-}
-
-.stage-meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 14px;
-  font-family: "Fira Code", monospace;
-  font-size: 13px;
-  color: var(--text-2);
-}
-
-.stage-palette {
-  font-weight: 500;
-  color: var(--text);
-  background: var(--chip-bg);
-  padding: 4px 12px;
-  border-radius: 999px;
+.floating-note {
+  font-family: "Caveat", cursive;
+  font-size: 18px;
+  color: rgba(var(--pop-rgb), 0.8);
+  transform: rotate(-3deg);
+  margin-bottom: 2px;
 }
 
 /* ---------- 控件区：直接排在页面底色上 ---------- */
@@ -441,39 +426,64 @@ html[data-theme="dark"] .switch {
   border-color: var(--pop);
 }
 
-/* ---------- 代码行 ---------- */
+/* ---------- macOS 风格代码窗口（设计系统 #5A） ---------- */
 
-.code-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.code-window {
   background: var(--dark-panel);
   border-radius: 12px;
-  padding: 12px 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
 }
 
-.code {
-  margin: 0;
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tl {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tl.red {
+  background: #ff5f57;
+}
+
+.tl.yellow {
+  background: #febc2e;
+}
+
+.tl.green {
+  background: #28c840;
+}
+
+.filename {
+  margin-left: 8px;
+  font-family: "Fira Code", monospace;
+  font-size: 12px;
+  color: #969aa9;
   flex: 1;
   min-width: 0;
-  font-size: 12.5px;
-  line-height: 1.5;
-  font-family: "Fira Code", monospace;
-  color: #c3c6d1;
-  white-space: pre;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .copy {
   flex-shrink: 0;
-  height: 32px;
-  padding: 0 16px;
+  height: 28px;
+  padding: 0 12px;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 999px;
   color: #c3c6d1;
-  font-size: 13px;
+  font-size: 12px;
   cursor: pointer;
   transition: border-color 0.15s ease, color 0.15s ease;
 }
@@ -481,6 +491,32 @@ html[data-theme="dark"] .switch {
 .copy:hover {
   border-color: var(--highlight);
   color: var(--highlight);
+}
+
+.code {
+  margin: 0;
+  padding: 16px 20px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  font-family: "Fira Code", monospace;
+  color: #c3c6d1;
+  white-space: pre;
+  overflow: auto;
+  max-height: 280px;
+}
+
+/* ---------- 区块小标题 ---------- */
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.section-hint {
+  font-family: "Caveat", cursive;
+  font-size: 16px;
+  color: var(--text-3);
 }
 
 /* ---------- 预设横排 ---------- */
