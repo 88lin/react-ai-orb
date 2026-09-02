@@ -21,7 +21,6 @@
   --ink-faint: #6e6e80;
   --ink-rgb: 26, 26, 46;
   --cream: #fefcf6;
-  --preview-bg: #fff8e1;
   --dark-panel: #151821;
   --border: rgba(26, 26, 46, 0.1);
   --hairline: rgba(26, 26, 46, 0.07);
@@ -132,6 +131,23 @@ html[data-theme="dark"] .subtitle a {
   color: var(--highlight);
 }
 
+.toggle,
+.reset,
+.copy,
+.theme-toggle {
+  position: relative;
+}
+
+.toggle::after,
+.reset::after,
+.copy::after,
+.theme-toggle::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+}
+
 .theme-toggle {
   flex-shrink: 0;
   height: 32px;
@@ -169,6 +185,20 @@ html[data-theme="dark"] .theme-toggle:hover {
 
 .floating-preview.dragged {
   cursor: grabbing;
+}
+
+.floating-preview:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+/* 前庭安全：用户偏好减少动效时，暂停所有球的无限动画（保留当前帧） */
+@media (prefers-reduced-motion: reduce) {
+  .floating-preview *,
+  .card * {
+    animation-play-state: paused !important;
+  }
 }
 
 /* ---------- 控件区：直接排在页面底色上 ---------- */
@@ -415,6 +445,22 @@ html[data-theme="dark"] .switch {
 @media (max-width: 860px) {
   .presets {
     grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .subtitle {
+    flex-basis: 100%;
+    order: 3;
+    justify-content: flex-start;
+  }
+  .floating-preview {
+    right: 16px;
+    bottom: 16px;
   }
 }
 
