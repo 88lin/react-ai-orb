@@ -155,26 +155,20 @@ html[data-theme="dark"] .theme-toggle:hover {
   color: var(--highlight);
 }
 
-/* ---------- 悬浮预览：固定右下角，不占版面 ---------- */
+/* ---------- 悬浮预览：固定右下角，可拖动 ---------- */
 
 .floating-preview {
   position: fixed;
   right: 28px;
   bottom: 28px;
   z-index: 100;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  pointer-events: none;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
 }
 
-.floating-note {
-  font-family: "Caveat", cursive;
-  font-size: 18px;
-  color: rgba(var(--pop-rgb), 0.8);
-  transform: rotate(-3deg);
-  margin-bottom: 2px;
+.floating-preview.dragged {
+  cursor: grabbing;
 }
 
 /* ---------- 控件区：直接排在页面底色上 ---------- */

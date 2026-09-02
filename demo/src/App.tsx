@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Orb } from "../../src";
 import { colorPalettes } from "../../src/palette/colorPalettes";
 import type { OrbPalette, ReactAIOrbProps } from "../../src";
@@ -46,7 +46,7 @@ type OrbState = {
 
 const defaultState: OrbState = {
   paletteKey: "oceanDepths",
-  size: 1.4,
+  size: 1,
   animationSpeedBase: 1,
   animationSpeedHue: 1,
   hueRotation: 120,
@@ -134,6 +134,10 @@ export default function App() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [state, setState] = useState<OrbState>(defaultState);
   const [copied, setCopied] = useState(false);
+  const [pos, setPos] = useState<{ x: number; y: number } | null>(null);
+  const dragRef = useRef<{ dx: number; dy: number; w: number; h: number } | null>(
+    null,
+  );
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -341,8 +345,45 @@ export default function App() {
         ))}
       </section>
 
-      <div className="floating-preview" aria-hidden="true">
-        <span className="floating-note">实时预览 ✳</span>
+      <div
+        className={pos ? "floating-preview dragged" : "floating-preview"}
+        style={
+          pos
+            ? { left: pos.x, top: pos.y, right: "auto", bottom: "auto" }
+            : undefined
+        }
+        onPointerDown={(e) => {
+          const el = e.currentTarget;
+          const rect = el.getBoundingClientRect();
+          dragRef.current = {
+            dx: e.clientX - rect.left,
+            dy: e.clientY - rect.top,
+            w: rect.width,
+            h: rect.height,
+          };
+          el.setPointerCapture(e.pointerId);
+        }}
+        onPointerMove={(e) => {
+          const d = dragRef.current;
+          if (!d) return;
+          setPos({
+            x: Math.min(
+              Math.max(8, e.clientX - d.dx),
+              window.innerWidth - d.w - 8,
+            ),
+            y: Math.min(
+              Math.max(8, e.clientY - d.dy),
+              window.innerHeight - d.h - 8,
+            ),
+          });
+        }}
+        onPointerUp={() => {
+          dragRef.current = null;
+        }}
+        onPointerCancel={() => {
+          dragRef.current = null;
+        }}
+      >
         <Orb {...orbProps} />
       </div>
     </div>
