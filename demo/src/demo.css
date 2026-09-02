@@ -2,85 +2,463 @@
   box-sizing: border-box;
 }
 
+/* ============================================================
+   单一区域 · 居中流式布局（无分栏、无面板框）
+   间距：区块间 20px，组件间 12px
+   字号：22(标题) / 14(正文·标签·数值) / 13(次要) / 12(最小)
+   控件统一高 32px
+   ============================================================ */
+:root {
+  --brand: #2b7fd8;
+  --brand-deep: #1e5ba8;
+  --brand-rgb: 43, 127, 216;
+  --highlight: #f4d758;
+  --highlight-rgb: 244, 215, 88;
+  --pop: #e84a5f;
+  --pop-rgb: 232, 74, 95;
+  --ink: #1a1a2e;
+  --ink-light: #4a4a5a;
+  --ink-faint: #6e6e80;
+  --ink-rgb: 26, 26, 46;
+  --cream: #fefcf6;
+  --preview-bg: #fff8e1;
+  --dark-panel: #151821;
+  --border: rgba(26, 26, 46, 0.1);
+  --hairline: rgba(26, 26, 46, 0.07);
+  --border-strong: rgba(26, 26, 46, 0.18);
+  --focus-ring: #1e5ba8;
+  --highlighter: linear-gradient(transparent 58%, var(--highlight) 58%);
+
+  --bg: var(--cream);
+  --text: var(--ink);
+  --text-2: var(--ink-light);
+  --text-3: var(--ink-faint);
+  --chip-bg: rgba(26, 26, 46, 0.06);
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="dark"] {
+  --bg: var(--dark-panel);
+  --text: #f2f3f7;
+  --text-2: #c3c6d1;
+  --text-3: #969aa9;
+  --chip-bg: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.1);
+  --hairline: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.22);
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
 body {
   margin: 0;
-  background: radial-gradient(circle at 50% 0%, #1a1a2e 0%, #0a0a12 70%);
-  color: #e8e8f0;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  font-family: "Noto Sans SC", -apple-system, "Segoe UI", "PingFang SC",
     "Microsoft YaHei", sans-serif;
-  min-height: 100vh;
 }
 
-.page {
-  max-width: 1080px;
+::selection {
+  background: var(--highlight);
+  color: var(--ink);
+}
+
+:is(button, a, input):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.app {
+  max-width: 980px;
   margin: 0 auto;
-  padding: 48px 24px 80px;
+  padding: 20px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-h1 {
-  font-size: 32px;
-  margin: 0 0 8px;
+/* ---------- 顶栏 ---------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 4px;
+}
+
+.topbar h1 {
+  font-family: "Noto Serif SC", serif;
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 1;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.hl {
+  background: var(--highlighter);
+  padding: 0 2px;
 }
 
 .version {
-  font-size: 14px;
-  color: #8888a8;
-  vertical-align: middle;
+  font-family: "Fira Code", monospace;
+  font-size: 12px;
+  color: var(--text-3);
+  vertical-align: 2px;
   margin-left: 8px;
+  font-weight: 400;
 }
 
 .subtitle {
-  color: #9a9ab8;
-  margin: 0 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-2);
+  flex: 1;
+  min-width: 0;
+  justify-content: flex-end;
 }
 
 .subtitle a {
-  color: #7ab8ff;
+  color: var(--brand-deep);
   text-decoration: none;
+  font-weight: 500;
 }
 
-.subtitle code {
-  background: rgba(255, 255, 255, 0.08);
-  padding: 2px 8px;
-  border-radius: 6px;
+html[data-theme="dark"] .subtitle a {
+  color: var(--highlight);
+}
+
+.theme-toggle {
+  flex-shrink: 0;
+  height: 32px;
+  padding: 0 16px;
+  background: transparent;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--text);
   font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
 }
 
-.speed-control {
+.theme-toggle:hover {
+  border-color: var(--brand);
+  color: var(--brand-deep);
+}
+
+html[data-theme="dark"] .theme-toggle:hover {
+  color: var(--highlight);
+}
+
+/* ---------- 悬浮预览：固定右下角，可拖动 ---------- */
+
+.floating-preview {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 100;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.floating-preview.dragged {
+  cursor: grabbing;
+}
+
+/* ---------- 控件区：直接排在页面底色上 ---------- */
+
+.panel {
   display: flex;
   flex-direction: column;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  padding: 14px 16px;
+}
+
+.grp {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  align-items: center;
+}
+
+.knob {
+  display: inline-flex;
+  align-items: center;
   gap: 8px;
-  max-width: 360px;
-  margin-bottom: 40px;
-  font-size: 14px;
-  color: #b8b8d0;
+  font-size: 13px;
+  color: var(--text-2);
+  cursor: pointer;
 }
 
-.speed-control input {
-  accent-color: #7ab8ff;
+.pill {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: "Fira Code", monospace;
+  font-size: 13px;
+  cursor: pointer;
 }
 
-.grid {
+.pill:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.val {
+  color: var(--pop);
+  font-variant-numeric: tabular-nums;
+  font-family: "Fira Code", monospace;
+  font-size: 13px;
+  min-width: 36px;
+  display: inline-block;
+}
+
+.knob input[type="range"] {
+  width: 118px;
+}
+
+/* 开关行 */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 14px 0 8px;
+  background: var(--chip-bg);
+  border: none;
+  border-radius: 999px;
+  color: var(--text-2);
+  font-size: 13px;
+  font-family: "Fira Code", monospace;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.toggle:hover {
+  color: var(--text);
+}
+
+.toggle.on {
+  background: rgba(var(--brand-rgb), 0.16);
+  color: var(--brand-deep);
+}
+
+html[data-theme="dark"] .toggle.on {
+  color: var(--highlight);
+}
+
+.switch {
+  position: relative;
+  width: 32px;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(var(--ink-rgb), 0.2);
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+html[data-theme="dark"] .switch {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.toggle.on .switch {
+  background: var(--brand);
+}
+
+.switch .knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.toggle.on .knob {
+  transform: translateX(14px);
+}
+
+.reset {
+  height: 32px;
+  padding: 0 14px;
+  background: transparent;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.reset:hover {
+  color: var(--pop);
+  border-color: var(--pop);
+}
+
+/* ---------- macOS 风格代码窗口（设计系统 #5A） ---------- */
+
+.code-window {
+  background: var(--dark-panel);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tl {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tl.red {
+  background: #ff5f57;
+}
+
+.tl.yellow {
+  background: #febc2e;
+}
+
+.tl.green {
+  background: #28c840;
+}
+
+.filename {
+  margin-left: 8px;
+  font-family: "Fira Code", monospace;
+  font-size: 12px;
+  color: #969aa9;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copy {
+  flex-shrink: 0;
+  height: 28px;
+  padding: 0 12px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  color: #c3c6d1;
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.copy:hover {
+  border-color: var(--highlight);
+  color: var(--highlight);
+}
+
+.code {
+  margin: 0;
+  padding: 16px 20px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  font-family: "Fira Code", monospace;
+  color: #c3c6d1;
+  white-space: pre;
+  overflow: auto;
+  max-height: 280px;
+}
+
+/* ---------- 区块小标题 ---------- */
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.section-hint {
+  font-family: "Caveat", cursive;
+  font-size: 16px;
+  color: var(--text-3);
+}
+
+/* ---------- 预设横排 ---------- */
+
+.presets {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 860px) {
+  .presets {
+    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  }
 }
 
 .card {
+  position: relative;
   margin: 0;
-  padding: 28px 12px 16px;
+  padding: 14px 6px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
+  justify-content: center;
+  gap: 8px;
+  background: var(--chip-bg);
+  border: 2px dashed var(--brand);
+  border-radius: 12px;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.card figcaption {
-  font-size: 13px;
-  color: #9a9ab8;
-  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+.card[data-tone="1"] {
+  border-color: var(--highlight);
+}
+
+.card[data-tone="2"] {
+  border-color: var(--pop);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.card-name {
+  font-size: 12px;
+  line-height: 1;
+  color: var(--text-2);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:is(.chip, .toggle, .reset, .copy, .card, .theme-toggle):active {
+  transform: scale(0.96);
 }
