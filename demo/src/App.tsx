@@ -72,6 +72,8 @@ function stateFromProps(props: ReactAIOrbProps, paletteKey: string): OrbState {
 
 function Slider(props: {
   label: string;
+  prop: string;
+  range: string;
   value: number;
   min: number;
   max: number;
@@ -81,19 +83,8 @@ function Slider(props: {
 }) {
   const pct = ((props.value - props.min) / (props.max - props.min)) * 100;
   return (
-    <label className="control">
-      <span className="control-label">
-        <span className="name" title={props.label}>
-          {props.label}
-          <em>
-            {props.min}–{props.max}
-          </em>
-        </span>
-        <strong>
-          {props.value}
-          {props.suffix ?? ""}
-        </strong>
-      </span>
+    <label className="knob" title={`${props.prop}（${props.range}）`}>
+      {props.label}
       <input
         type="range"
         min={props.min}
@@ -103,6 +94,10 @@ function Slider(props: {
         style={{ "--fill": `${pct}%` } as React.CSSProperties}
         onChange={(e) => props.onChange(Number(e.target.value))}
       />
+      <span className="val">
+        {props.value}
+        {props.suffix ?? ""}
+      </span>
     </label>
   );
 }
@@ -208,34 +203,26 @@ export default function App() {
         </button>
       </header>
 
-      <section className="controls">
-        <div className="section-head">
-          <span className="block-label">调色板</span>
-          <span className="section-hint">点一下切换</span>
-        </div>
-        <div className="chips-row">
-          {paletteEntries.map(([name, p]) => (
-            <button
-              key={name}
-              type="button"
-              title={name}
-              className={state.paletteKey === name ? "chip active" : "chip"}
-              onClick={() => set("paletteKey", name)}
+      <section className="panel">
+        <div className="grp">
+          <label className="knob">
+            调色板
+            <select
+              className="pill"
+              value={state.paletteKey}
+              onChange={(e) => set("paletteKey", e.target.value)}
             >
-              <span
-                className="dot"
-                style={{
-                  background: `linear-gradient(135deg, ${p.mainBgStart}, ${p.mainBgEnd})`,
-                }}
-              />
-              {name}
-            </button>
-          ))}
-        </div>
-
-        <div className="slider-grid">
+              {paletteEntries.map(([name]) => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
+          </label>
           <Slider
-            label="size"
+            label="尺寸"
+            prop="size"
+            range="0.5–8"
             value={state.size}
             min={0.5}
             max={8}
@@ -243,7 +230,9 @@ export default function App() {
             onChange={(v) => set("size", v)}
           />
           <Slider
-            label="speedBase"
+            label="转速"
+            prop="animationSpeedBase"
+            range="0–3x"
             value={state.animationSpeedBase}
             min={0}
             max={3}
@@ -252,7 +241,9 @@ export default function App() {
             onChange={(v) => set("animationSpeedBase", v)}
           />
           <Slider
-            label="speedHue"
+            label="变色速度"
+            prop="animationSpeedHue"
+            range="0–3x"
             value={state.animationSpeedHue}
             min={0}
             max={3}
@@ -261,7 +252,9 @@ export default function App() {
             onChange={(v) => set("animationSpeedHue", v)}
           />
           <Slider
-            label="hue"
+            label="变色幅度"
+            prop="hueRotation"
+            range="0–360°"
             value={state.hueRotation}
             min={0}
             max={360}
@@ -270,7 +263,9 @@ export default function App() {
             onChange={(v) => set("hueRotation", v)}
           />
           <Slider
-            label="blobA"
+            label="光斑A"
+            prop="blobAOpacity"
+            range="0–1"
             value={state.blobAOpacity}
             min={0}
             max={1}
@@ -278,7 +273,9 @@ export default function App() {
             onChange={(v) => set("blobAOpacity", v)}
           />
           <Slider
-            label="blobB"
+            label="光斑B"
+            prop="blobBOpacity"
+            range="0–1"
             value={state.blobBOpacity}
             min={0}
             max={1}
@@ -287,16 +284,16 @@ export default function App() {
           />
         </div>
 
-        <div className="toggle-row">
+        <div className="grp">
           <Toggle
-            label="mainOrbHueAnimation"
-            hint="主球色相循环动画：开=持续变色，关=固定色相"
+            label="色相动画"
+            hint="mainOrbHueAnimation：开=持续变色，关=固定色相"
             value={state.mainOrbHueAnimation}
             onChange={(v) => set("mainOrbHueAnimation", v)}
           />
           <Toggle
-            label="noShadow"
-            hint="关闭球体下方的投影"
+            label="无阴影"
+            hint="noShadow：关闭球体下方的投影"
             value={state.noShadow}
             onChange={(v) => set("noShadow", v)}
           />
