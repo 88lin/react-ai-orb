@@ -40,3 +40,6 @@ yarn-error.log*
 next-env.d.ts
 
 /public/large
+# demo
+demo/node_modules
+demo/dist

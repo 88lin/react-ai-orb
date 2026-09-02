@@ -10,6 +10,7 @@ Perfect for AI interfaces, assistants, interactive chatbots, or anywhere you nee
 [![downloads](https://img.shields.io/npm/dm/react-ai-orb.svg?color=5f63f1)](https://www.npmjs.com/package/react-ai-orb)
 [![license](https://img.shields.io/npm/l/react-ai-orb.svg?color=5f63f1)](https://www.npmjs.com/package/react-ai-orb)
 [![types](https://img.shields.io/npm/types/react-ai-orb.svg?color=5f63f1)](https://www.typescriptlang.org/)
+[![online demo](https://img.shields.io/badge/在线预览-GitHub_Pages-5f63f1)](https://88lin.github.io/react-ai-orb/)
 
 <img src="https://github.com/user-attachments/assets/5f7c4adc-8389-44fe-86ab-00d4be71b611" />
 

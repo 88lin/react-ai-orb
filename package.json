@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Steve0929/react-ai-orb.git"
+    "url": "git+https://github.com/88lin/react-ai-orb.git"
   },
   "keywords": [
     "react ai orb",
@@ -44,9 +44,9 @@
   "author": "github.com/Steve0929",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Steve0929/react-ai-orb/issues"
+    "url": "https://github.com/88lin/react-ai-orb/issues"
   },
-  "homepage": "https://github.com/Steve0929/react-ai-orb#readme",
+  "homepage": "https://github.com/88lin/react-ai-orb#readme",
   "peerDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
