@@ -46,7 +46,7 @@ type OrbState = {
 
 const defaultState: OrbState = {
   paletteKey: "oceanDepths",
-  size: 5,
+  size: 3,
   animationSpeedBase: 1,
   animationSpeedHue: 1,
   hueRotation: 120,
@@ -87,7 +87,6 @@ function Slider(props: {
           {props.label}
           <em>
             {props.min}–{props.max}
-            {props.suffix ?? ""}
           </em>
         </span>
         <strong>
@@ -159,18 +158,20 @@ export default function App() {
   );
 
   const code = useMemo(() => {
-    const parts = [
-      `palette="${state.paletteKey}"`,
-      `size={${state.size}}`,
-      `animationSpeedBase={${state.animationSpeedBase}}`,
-      `animationSpeedHue={${state.animationSpeedHue}}`,
-      `hueRotation={${state.hueRotation}}`,
-      `mainOrbHueAnimation={${state.mainOrbHueAnimation}}`,
-      `blobAOpacity={${state.blobAOpacity}}`,
-      `blobBOpacity={${state.blobBOpacity}}`,
-      `noShadow={${state.noShadow}}`,
+    const lines = [
+      `<Orb`,
+      `  palette="${state.paletteKey}"`,
+      `  size={${state.size}}`,
+      `  animationSpeedBase={${state.animationSpeedBase}}`,
+      `  animationSpeedHue={${state.animationSpeedHue}}`,
+      `  hueRotation={${state.hueRotation}}`,
+      `  mainOrbHueAnimation={${state.mainOrbHueAnimation}}`,
+      `  blobAOpacity={${state.blobAOpacity}}`,
+      `  blobBOpacity={${state.blobBOpacity}}`,
+      `  noShadow={${state.noShadow}}`,
+      `/>`,
     ];
-    return `<Orb ${parts.join(" ")} />`;
+    return lines.join("\n");
   }, [state]);
 
   const copyCode = async () => {
@@ -191,8 +192,7 @@ export default function App() {
           <span className="version">v1.1.0</span>
         </h1>
         <p className="subtitle">
-          纯 CSS 动画的 AI 发光球组件
-          <code>npm i react-ai-orb</code>
+          <span>纯 CSS 动画的 AI 发光球组件</span>
           <a href="https://github.com/88lin/react-ai-orb">GitHub ↗</a>
         </p>
         <button
@@ -204,165 +204,142 @@ export default function App() {
         </button>
       </header>
 
-      <div className="main">
-        <aside className="controls">
-          <div className="control-block">
-            <span className="block-label">palette</span>
-            <div className="palette-chips">
-              {paletteEntries.map(([name, p]) => (
-                <button
-                  key={name}
-                  type="button"
-                  title={name}
-                  className={
-                    state.paletteKey === name ? "chip active" : "chip"
-                  }
-                  onClick={() => set("paletteKey", name)}
-                >
-                  <span
-                    className="dot"
-                    style={{
-                      background: `linear-gradient(135deg, ${p.mainBgStart}, ${p.mainBgEnd})`,
-                    }}
-                  />
-                  {name}
-                </button>
-              ))}
-            </div>
-          </div>
+      <section className="stage">
+        <Orb {...orbProps} />
+        <div className="stage-meta">
+          <span className="stage-palette">{state.paletteKey}</span>
+          <span>size {state.size}</span>
+          <span>speed {state.animationSpeedBase}x</span>
+          <span>hue {state.hueRotation}°</span>
+        </div>
+      </section>
 
-          <div className="control-block">
-            <span className="block-label">props</span>
-            <div className="slider-grid">
-              <Slider
-                label="size"
-                value={state.size}
-                min={0.5}
-                max={8}
-                step={0.1}
-                onChange={(v) => set("size", v)}
+      <section className="controls">
+        <div className="chips-row">
+          {paletteEntries.map(([name, p]) => (
+            <button
+              key={name}
+              type="button"
+              title={name}
+              className={state.paletteKey === name ? "chip active" : "chip"}
+              onClick={() => set("paletteKey", name)}
+            >
+              <span
+                className="dot"
+                style={{
+                  background: `linear-gradient(135deg, ${p.mainBgStart}, ${p.mainBgEnd})`,
+                }}
               />
-              <Slider
-                label="speedBase"
-                value={state.animationSpeedBase}
-                min={0}
-                max={3}
-                step={0.1}
-                suffix="x"
-                onChange={(v) => set("animationSpeedBase", v)}
-              />
-              <Slider
-                label="speedHue"
-                value={state.animationSpeedHue}
-                min={0}
-                max={3}
-                step={0.1}
-                suffix="x"
-                onChange={(v) => set("animationSpeedHue", v)}
-              />
-              <Slider
-                label="hue"
-                value={state.hueRotation}
-                min={0}
-                max={360}
-                step={1}
-                suffix="°"
-                onChange={(v) => set("hueRotation", v)}
-              />
-              <Slider
-                label="blobA"
-                value={state.blobAOpacity}
-                min={0}
-                max={1}
-                step={0.05}
-                onChange={(v) => set("blobAOpacity", v)}
-              />
-              <Slider
-                label="blobB"
-                value={state.blobBOpacity}
-                min={0}
-                max={1}
-                step={0.05}
-                onChange={(v) => set("blobBOpacity", v)}
-              />
-            </div>
-          </div>
+              {name}
+            </button>
+          ))}
+        </div>
 
-          <div className="control-block">
-            <span className="block-label">switch</span>
-            <div className="toggle-row">
-              <Toggle
-                label="mainOrbHueAnimation"
-                hint="主球色相循环动画：开=持续变色，关=固定色相"
-                value={state.mainOrbHueAnimation}
-                onChange={(v) => set("mainOrbHueAnimation", v)}
-              />
-              <Toggle
-                label="noShadow"
-                hint="关闭球体下方的投影"
-                value={state.noShadow}
-                onChange={(v) => set("noShadow", v)}
-              />
-              <button
-                type="button"
-                className="reset"
-                onClick={() => setState(defaultState)}
-              >
-                ↺ 重置
-              </button>
-            </div>
-          </div>
-        </aside>
+        <div className="slider-grid">
+          <Slider
+            label="size"
+            value={state.size}
+            min={0.5}
+            max={8}
+            step={0.1}
+            onChange={(v) => set("size", v)}
+          />
+          <Slider
+            label="speedBase"
+            value={state.animationSpeedBase}
+            min={0}
+            max={3}
+            step={0.1}
+            suffix="x"
+            onChange={(v) => set("animationSpeedBase", v)}
+          />
+          <Slider
+            label="speedHue"
+            value={state.animationSpeedHue}
+            min={0}
+            max={3}
+            step={0.1}
+            suffix="x"
+            onChange={(v) => set("animationSpeedHue", v)}
+          />
+          <Slider
+            label="hue"
+            value={state.hueRotation}
+            min={0}
+            max={360}
+            step={1}
+            suffix="°"
+            onChange={(v) => set("hueRotation", v)}
+          />
+          <Slider
+            label="blobA"
+            value={state.blobAOpacity}
+            min={0}
+            max={1}
+            step={0.05}
+            onChange={(v) => set("blobAOpacity", v)}
+          />
+          <Slider
+            label="blobB"
+            value={state.blobBOpacity}
+            min={0}
+            max={1}
+            step={0.05}
+            onChange={(v) => set("blobBOpacity", v)}
+          />
+        </div>
 
-        <main className="preview">
-          <div className="preview-stage" data-palette={state.paletteKey}>
-            <span className="preview-note" aria-hidden="true">
-              实时预览 ✳
-            </span>
-            <Orb {...orbProps} />
-          </div>
-        </main>
+        <div className="toggle-row">
+          <Toggle
+            label="mainOrbHueAnimation"
+            hint="主球色相循环动画：开=持续变色，关=固定色相"
+            value={state.mainOrbHueAnimation}
+            onChange={(v) => set("mainOrbHueAnimation", v)}
+          />
+          <Toggle
+            label="noShadow"
+            hint="关闭球体下方的投影"
+            value={state.noShadow}
+            onChange={(v) => set("noShadow", v)}
+          />
+          <button
+            type="button"
+            className="reset"
+            onClick={() => setState(defaultState)}
+          >
+            ↺ 重置
+          </button>
+        </div>
+      </section>
 
-        <aside className="presets">
-          <div className="presets-head">
-            <span className="presets-title">全部效果</span>
-            <span className="presets-count">{presets.length} 种</span>
-            <span className="presets-hint">点击加载</span>
-          </div>
-          <div className="preset-grid">
-            {presets.map(({ name, props }, i) => (
-              <button
-                key={name}
-                type="button"
-                className="card"
-                data-tone={i % 3}
-                onClick={() =>
-                  setState(
-                    stateFromProps(
-                      props,
-                      name === "multiColor" ? "cosmicNebula" : name,
-                    ),
-                  )
-                }
-              >
-                <Orb {...props} size={0.7} />
-                <span className="card-name">{name}</span>
-                <span className="card-num" aria-hidden="true">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </button>
-            ))}
-          </div>
-        </aside>
-      </div>
-
-      <footer className="codebar">
-        <span className="codebar-label">JSX</span>
+      <section className="code-row">
         <pre className="code">{code}</pre>
         <button type="button" className="copy" onClick={copyCode}>
           {copied ? "已复制 ✓" : "复制"}
         </button>
-      </footer>
+      </section>
+
+      <section className="presets">
+        {presets.map(({ name, props }, i) => (
+          <button
+            key={name}
+            type="button"
+            className="card"
+            data-tone={i % 3}
+            onClick={() =>
+              setState(
+                stateFromProps(
+                  props,
+                  name === "multiColor" ? "cosmicNebula" : name,
+                ),
+              )
+            }
+          >
+            <Orb {...props} size={0.6} />
+            <span className="card-name">{name}</span>
+          </button>
+        ))}
+      </section>
     </div>
   );
 }
