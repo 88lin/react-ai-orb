@@ -3,13 +3,13 @@
   "version": "1.1.0",
   "description": "A beautiful, customizable animated orb component for React applications! Perfect for AI interfaces, assistants, interactive chatbots, or anywhere you need a glowing orb.",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "test": "jest"
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -21,27 +21,25 @@
     "react animated orb",
     "react siri component",
     "orb",
-    "ai",
-    "3d",
     "sphere",
     "siri",
+    "ai",
     "ai-animation",
+    "ai-visualization",
     "animated-orb",
     "interactive-orb",
     "visual-effects",
-    "3d-graphics",
-    "react-orb",
-    "react-3d",
-    "ai-visualization",
-    "react-component",
-    "shader",
     "gradient-animation",
+    "css-animation",
+    "react-orb",
     "react-ai",
-    "3d-sphere",
     "react-animation",
-    "3d-orb"
+    "react-component"
   ],
-  "author": "github.com/Steve0929",
+  "author": "88lin (https://github.com/88lin)",
+  "contributors": [
+    "Steve0929 (https://github.com/Steve0929)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/88lin/react-ai-orb/issues"
@@ -52,21 +50,13 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/preset-env": "^7.26.0",
-    "@babel/preset-react": "^7.26.3",
-    "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-typescript": "^12.1.2",
     "@types/react": "^19.0.7",
-    "babel-loader": "^9.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rollup": "^2.79.2",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-postcss": "^4.0.2",
     "tslib": "^2.8.1",
     "typescript": "^5.7.3"

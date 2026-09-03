@@ -28,11 +28,11 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: demo/package.json
+          cache-dependency-path: demo/package-lock.json
 
       - name: Build demo
         working-directory: demo
-        run: npm install && npm run build
+        run: npm ci && npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
