@@ -59,10 +59,6 @@ export const Assistant = () => <Orb />;
 
 ## 📦 安装
 
-> [!IMPORTANT]
-> 本项目**没有发布到 npm 或任何包平台，只能通过 Git 安装**。
-> npm 上同名的 `react-ai-orb` 属于[上游原版](https://github.com/Steve0929/react-ai-orb)，不包含本仓库的改动。
-
 构建产物 `dist/` 已随仓库提交，安装后开箱即用，**不需要本地构建**：
 
 ```bash
@@ -258,13 +254,6 @@ const MyComponent = () => <Orb palette={midnight} />;
 ## ❓ 常见问题
 
 <details>
-<summary><b><code>npm i react-ai-orb</code> 为什么装不到这个版本？</b></summary>
-
-本仓库没有发布到 npm。npm 上同名的包是[上游原版](https://github.com/Steve0929/react-ai-orb)，不含本仓库的改动，请按[安装](#-安装)一节用 Git 方式安装。
-
-</details>
-
-<details>
 <summary><b>需要单独引入 CSS 吗？</b></summary>
 
 不需要。打包时 CSS 已内联进 `dist/`，组件加载时会自行注入样式。
@@ -274,7 +263,7 @@ const MyComponent = () => <Orb palette={midnight} />;
 <details>
 <summary><b>支持 React 18 吗？</b></summary>
 
-本仓库以 React 19 为目标，peer 依赖声明为 `^19.0.0`。项目仍在 React 18 的话，可以改用上游发布的 `react-ai-orb@1.0.13`。
+本仓库以 React 19 为目标，peer 依赖声明为 `^19.0.0`。
 
 </details>
 

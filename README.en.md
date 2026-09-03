@@ -59,10 +59,6 @@ That's it — a glowing, rotating, color-shifting orb is running.
 
 ## 📦 Installation
 
-> [!IMPORTANT]
-> This project is **not published to npm or any other registry — install it from Git**.
-> The `react-ai-orb` package on npm is the [upstream original](https://github.com/Steve0929/react-ai-orb) and does not include this fork's changes.
-
 The build output in `dist/` is committed to the repository, so installs work out of the box with **no local build step**:
 
 ```bash
@@ -258,13 +254,6 @@ The orb is built from a main body plus four rotating inner shapes. Shapes B, C a
 ## ❓ FAQ
 
 <details>
-<summary><b>Why doesn't <code>npm i react-ai-orb</code> give me this version?</b></summary>
-
-This repository is not published to npm. The package with that name is the [upstream original](https://github.com/Steve0929/react-ai-orb) and does not contain this fork's changes — install from Git as shown under [Installation](#-installation).
-
-</details>
-
-<details>
 <summary><b>Do I need to import a CSS file?</b></summary>
 
 No. The CSS is inlined into `dist/` at build time and injected when the component loads.
@@ -274,7 +263,7 @@ No. The CSS is inlined into `dist/` at build time and injected when the componen
 <details>
 <summary><b>Does it support React 18?</b></summary>
 
-This repository targets React 19 and declares `^19.0.0` as its peer dependency. If you are still on React 18, use the upstream release `react-ai-orb@1.0.13` instead.
+This repository targets React 19 and declares `^19.0.0` as its peer dependency.
 
 </details>
 
