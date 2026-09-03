@@ -4,11 +4,11 @@
 
 <img src="./.github/assets/banner.en.svg" alt="react-ai-orb" width="100%" />
 
-[![live demo](https://img.shields.io/badge/live_demo-GitHub_Pages-3FB950?style=for-the-badge&logo=github&logoColor=white&labelColor=2EA043)](https://88lin.github.io/react-ai-orb/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=23272F)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=235A97)](https://www.typescriptlang.org/)
-[![install](https://img.shields.io/badge/install-Git-8B5CF6?style=for-the-badge&logo=git&logoColor=white&labelColor=6D28D9)](#-installation)
-[![License](https://img.shields.io/badge/License-MIT-14B8A6?style=for-the-badge&logo=opensourceinitiative&logoColor=white&labelColor=0F766E)](./LICENSE)
+[![live demo](https://img.shields.io/badge/live_demo-GitHub_Pages-C026D3?style=for-the-badge&logo=github&logoColor=white&labelColor=1E1B4B)](https://88lin.github.io/react-ai-orb/)
+[![React](https://img.shields.io/badge/React-19-7C3AED?style=for-the-badge&logo=react&logoColor=white&labelColor=1E1B4B)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-4F46E5?style=for-the-badge&logo=typescript&logoColor=white&labelColor=1E1B4B)](https://www.typescriptlang.org/)
+[![install](https://img.shields.io/badge/install-Git-2563EB?style=for-the-badge&logo=git&logoColor=white&labelColor=1E1B4B)](#-installation)
+[![License](https://img.shields.io/badge/License-MIT-0E7490?style=for-the-badge&logo=opensourceinitiative&logoColor=white&labelColor=1E1B4B)](./LICENSE)
 
 **A beautiful, customizable animated orb component for React.**
 
@@ -24,21 +24,20 @@ Perfect for AI interfaces, assistants, chatbots, or anywhere you need a glowing 
 
 > A CSS-driven glowing orb with zero runtime dependencies, about 4.8 KB gzipped — drop it in and go.
 
-|  |  |
-| :--- | :--- |
-| 🎨 **8 palettes · 8 presets** | Built-in `cosmicNebula`, `galaxy`, `oceanDepths` and more — or bring your own colors |
-| ⚡ **CSS-driven animation** | No canvas, no WebGL, no animation library — lightweight by design |
-| 🔄 **Live-tunable speed** | Speed is applied through the Web Animations `playbackRate`, so the orb accelerates from where it is instead of restarting |
-| 📐 **Fully scalable** | Stays crisp from a tiny inline status dot to a full-screen centerpiece |
-| 💅 **Zero style setup** | CSS is inlined into the build output — no extra stylesheet `import` |
-| 🧩 **TypeScript-first** | Type definitions are committed alongside `dist/`, so completions work right after install |
-| ⚛️ **Next.js friendly** | Works with App Router — just use it as a client component |
+- 🎨 **8 palettes · 8 presets** — built-in `cosmicNebula`, `galaxy`, `oceanDepths` and more, or bring your own colors
+- ⚡ **CSS-driven animation** — no canvas, no WebGL, no animation library; lightweight by design
+- 🔄 **Live-tunable speed** — speed goes through the Web Animations `playbackRate`, so the orb accelerates from where it is instead of restarting
+- 📐 **Fully scalable** — stays crisp from a tiny inline status dot to a full-screen centerpiece
+- 💅 **Zero style setup** — CSS is inlined into the build output, so there is no extra stylesheet `import`
+- 🧩 **TypeScript-first** — type definitions are committed alongside `dist/`, so completions work right after install
+- ⚛️ **Next.js friendly** — works with App Router; just use it as a client component
 
 ## 📑 Table of Contents
 
-| Get started | Use it | Customize | Project |
-| :--- | :--- | :--- | :--- |
-| [🚀 Quick Start](#-quick-start)<br>[📦 Installation](#-installation) | [💻 Usage](#-usage)<br>[▲ Next.js](#-nextjs)<br>[❓ FAQ](#-faq) | [🔧 Props](#-props)<br>[🌈 Presets](#-presets)<br>[🎨 Palettes](#-palettes) | [🧰 Tech Stack](#-tech-stack)<br>[📁 Project Structure](#-project-structure)<br>[🔨 Development](#-development)<br>[🤝 Contributing](#-contributing) |
+- **Get started** · [Quick Start](#-quick-start) · [Installation](#-installation)
+- **Use it** · [Usage](#-usage) · [Next.js](#-nextjs) · [FAQ](#-faq)
+- **Customize** · [Props](#-props) · [Presets](#-presets) · [Palettes](#-palettes)
+- **Project** · [Tech Stack](#-tech-stack) · [Project Structure](#-project-structure) · [Development](#-development) · [Contributing](#-contributing) · [License](#-license)
 
 ## 🚀 Quick Start
 

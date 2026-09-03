@@ -4,11 +4,11 @@
 
 <img src="./.github/assets/banner.svg" alt="react-ai-orb" width="100%" />
 
-[![在线预览](https://img.shields.io/badge/在线预览-GitHub_Pages-3FB950?style=for-the-badge&logo=github&logoColor=white&labelColor=2EA043)](https://88lin.github.io/react-ai-orb/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=23272F)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=235A97)](https://www.typescriptlang.org/)
-[![安装方式](https://img.shields.io/badge/安装-Git-8B5CF6?style=for-the-badge&logo=git&logoColor=white&labelColor=6D28D9)](#-安装)
-[![License](https://img.shields.io/badge/License-MIT-14B8A6?style=for-the-badge&logo=opensourceinitiative&logoColor=white&labelColor=0F766E)](./LICENSE)
+[![在线预览](https://img.shields.io/badge/在线预览-GitHub_Pages-C026D3?style=for-the-badge&logo=github&logoColor=white&labelColor=1E1B4B)](https://88lin.github.io/react-ai-orb/)
+[![React](https://img.shields.io/badge/React-19-7C3AED?style=for-the-badge&logo=react&logoColor=white&labelColor=1E1B4B)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-4F46E5?style=for-the-badge&logo=typescript&logoColor=white&labelColor=1E1B4B)](https://www.typescriptlang.org/)
+[![安装方式](https://img.shields.io/badge/安装-Git-2563EB?style=for-the-badge&logo=git&logoColor=white&labelColor=1E1B4B)](#-安装)
+[![License](https://img.shields.io/badge/License-MIT-0E7490?style=for-the-badge&logo=opensourceinitiative&logoColor=white&labelColor=1E1B4B)](./LICENSE)
 
 **一个美观、可定制的 React 动画球体组件。**
 
@@ -24,21 +24,20 @@
 
 > 纯 CSS 驱动的发光球体，零运行时依赖，产物约 4.8 KB（gzip），开箱即用。
 
-|  |  |
-| :--- | :--- |
-| 🎨 **8 套调色板 · 8 个预设** | 内置 `cosmicNebula`、`galaxy`、`oceanDepths` 等，也支持完全自定义颜色 |
-| ⚡ **纯 CSS 动画** | 不依赖 canvas、WebGL 或任何动画库，性能轻盈 |
-| 🔄 **速度实时可调** | 通过 Web Animations 的 `playbackRate` 调速，球体从当前位置平滑加速，不会跳帧重启 |
-| 📐 **任意缩放** | 从内联状态点到全屏主视觉都清晰锐利 |
-| 💅 **样式零配置** | CSS 已内联进构建产物，不需要额外 `import` 任何样式文件 |
-| 🧩 **TypeScript 优先** | 类型定义随 `dist/` 一起提交，装完即有完整补全 |
-| ⚛️ **Next.js 友好** | 兼容 App Router，按客户端组件使用即可 |
+- 🎨 **8 套调色板 · 8 个预设** — 内置 `cosmicNebula`、`galaxy`、`oceanDepths` 等，也支持完全自定义颜色
+- ⚡ **纯 CSS 动画** — 不依赖 canvas、WebGL 或任何动画库，性能轻盈
+- 🔄 **速度实时可调** — 通过 Web Animations 的 `playbackRate` 调速，球体从当前位置平滑加速，不会跳帧重启
+- 📐 **任意缩放** — 从内联状态点到全屏主视觉都清晰锐利
+- 💅 **样式零配置** — CSS 已内联进构建产物，不需要额外 `import` 任何样式文件
+- 🧩 **TypeScript 优先** — 类型定义随 `dist/` 一起提交，装完即有完整补全
+- ⚛️ **Next.js 友好** — 兼容 App Router，按客户端组件使用即可
 
 ## 📑 目录
 
-| 上手 | 使用 | 定制 | 项目 |
-| :--- | :--- | :--- | :--- |
-| [🚀 快速开始](#-快速开始)<br>[📦 安装](#-安装) | [💻 用法](#-用法)<br>[▲ Next.js](#-nextjs)<br>[❓ 常见问题](#-常见问题) | [🔧 Props](#-props)<br>[🌈 预设](#-预设)<br>[🎨 调色板](#-调色板) | [🧰 技术栈](#-技术栈)<br>[📁 项目结构](#-项目结构)<br>[🔨 本地开发](#-本地开发)<br>[🤝 贡献](#-贡献) |
+- **上手** · [快速开始](#-快速开始) · [安装](#-安装)
+- **使用** · [用法](#-用法) · [Next.js](#-nextjs) · [常见问题](#-常见问题)
+- **定制** · [Props](#-props) · [预设](#-预设) · [调色板](#-调色板)
+- **项目** · [技术栈](#-技术栈) · [项目结构](#-项目结构) · [本地开发](#-本地开发) · [贡献](#-贡献) · [许可证](#-许可证)
 
 ## 🚀 快速开始
 
