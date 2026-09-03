@@ -12,7 +12,7 @@
 **一个美观、可定制的 React 动画球体组件。**
 适合 AI 界面、智能助手、聊天机器人，或者任何需要一颗发光球体的地方 ✨
 
-**[🎧 在线预览](https://88lin.github.io/react-ai-orb/)** · [✨ 特性](#亮点) · [🚀 快速开始](#-快速开始) · [⚙️ Props](#️-props) · [📦 预设](#-预设) · [🎨 调色板](#-调色板) · [📦 npm](https://www.npmjs.com/package/react-ai-orb)
+**[🎧 在线预览](https://88lin.github.io/react-ai-orb/)** · [✨ 特性](#亮点) · [🚀 快速开始](#-快速开始) · [⚙️ Props](#️-props) · [📦 预设](#-预设) · [🎨 调色板](#-调色板)
 
 </div>
 
@@ -41,6 +41,7 @@
 - [📦 预设](#-预设)
 - [🎨 调色板](#-调色板)
 - [🧰 技术栈](#-技术栈)
+- [🗂️ 项目结构](#-项目结构)
 - [👨‍💻 开发](#-开发)
 - [🤝 贡献](#-贡献)
 - [📄 许可证](#-许可证)
@@ -60,6 +61,9 @@ export const Assistant = () => <Orb />;
 ```
 
 就这么简单——一颗会发光、会旋转、会变色的球体已经跑起来了。
+
+> [!TIP]
+> 想先看效果？访问 [在线预览](https://88lin.github.io/react-ai-orb/)。
 
 ## 📦 安装
 
@@ -115,7 +119,8 @@ const Assistant = () => {
 
 ## ⚛️ Next.js
 
-组件使用了浏览器 API，需要作为**客户端组件**使用：
+> [!NOTE]
+> 组件使用了浏览器 API，在 Next.js 中需作为**客户端组件**使用：
 
 ```jsx
 "use client";
@@ -140,7 +145,8 @@ import { Orb } from "react-ai-orb";
 
 ## 📦 预设
 
-预设就是一组 props 的集合，可以直接展开，再覆盖任意属性。
+> [!TIP]
+> 预设是一组 props 的集合，直接展开即可，也可覆盖任意属性。
 
 <p align="center"><img src="https://github.com/user-attachments/assets/64c8d073-d9d9-45bb-8183-428f19963caf" alt="presets preview" width="100%" /></p>
 
@@ -220,7 +226,48 @@ const MyComponent = () => <Orb palette={midnight} />;
 | [Rollup](https://rollupjs.org/) | 打包到 `dist/` |
 | 纯 CSS 动画 | 无 canvas / WebGL / 动画库，零运行时依赖 |
 
+## 🗂️ 项目结构
+
+```
+react-ai-orb/
+├── src/                        # 组件源码
+│   ├── components/
+│   │   ├── Orb/                # Orb 组件
+│   │   │   ├── Orb.tsx
+│   │   │   └── styles.css
+│   │   └── SvgElements/        # SVG 内形元素
+│   │       └── SvgElements.tsx
+│   ├── palette/
+│   │   └── colorPalettes.ts    # 8 套内置调色板
+│   ├── constants.ts
+│   ├── presets.ts              # 8 个预设
+│   ├── types.ts                # OrbPalette 等类型定义
+│   └── index.ts                # 入口导出
+├── demo/                       # Vite 在线预览
+│   ├── src/
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   └── demo.css
+│   ├── index.html
+│   ├── vite.config.ts
+│   └── package.json
+├── .github/
+│   ├── assets/                 # README 封面横幅
+│   │   ├── banner.svg
+│   │   └── banner.en.svg
+│   └── workflows/
+│       └── deploy.yml          # GitHub Pages 自动部署
+├── dist/                       # 打包产物（随包发布）
+├── rollup.config.js            # Rollup 打包配置
+├── tsconfig.json
+├── package.json
+└── LICENSE
+```
+
 ## 👨‍💻 开发
+
+> [!TIP]
+> 修改 `src/` 后运行 `npm run build` 重新打包到 `dist/`。
 
 ```bash
 npm install

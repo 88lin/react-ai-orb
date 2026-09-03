@@ -12,7 +12,7 @@
 **A beautiful, customizable animated orb component for React.**
 Perfect for AI interfaces, assistants, chatbots, or anywhere you need a glowing orb. ✨
 
-**[🎧 Live Demo](https://88lin.github.io/react-ai-orb/)** · [✨ Features](#highlights) · [🚀 Quick Start](#-quick-start) · [⚙️ Props](#️-props) · [📦 Presets](#-presets-1) · [🎨 Palettes](#-palettes) · [📦 npm](https://www.npmjs.com/package/react-ai-orb)
+**[🎧 Live Demo](https://88lin.github.io/react-ai-orb/)** · [✨ Features](#highlights) · [🚀 Quick Start](#-quick-start) · [⚙️ Props](#️-props) · [📦 Presets](#-presets-1) · [🎨 Palettes](#-palettes)
 
 </div>
 
@@ -41,6 +41,7 @@ Perfect for AI interfaces, assistants, chatbots, or anywhere you need a glowing 
 - [📦 Presets](#-presets-1)
 - [🎨 Palettes](#-palettes)
 - [🧰 Tech Stack](#-tech-stack)
+- [🗂️ Project Structure](#-project-structure)
 - [👨‍💻 Development](#-development)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
@@ -60,6 +61,9 @@ export const Assistant = () => <Orb />;
 ```
 
 That's it — a glowing, rotating, color-shifting orb is running.
+
+> [!TIP]
+> Want to see it first? Visit the [live demo](https://88lin.github.io/react-ai-orb/).
 
 ## 📦 Installation
 
@@ -116,7 +120,8 @@ const Assistant = () => {
 
 ## ⚛️ Next.js
 
-The component uses browser APIs, so it needs to be a **client component**:
+> [!NOTE]
+> The component uses browser APIs, so in Next.js it needs to be a **client component**:
 
 ```jsx
 "use client";
@@ -141,7 +146,8 @@ Every prop is optional.
 
 ## 📦 Presets
 
-A preset is just a bundle of props, so you can spread it and override anything.
+> [!TIP]
+> A preset is just a bundle of props — spread it, then override anything you like.
 
 <p align="center"><img src="https://github.com/user-attachments/assets/64c8d073-d9d9-45bb-8183-428f19963caf" alt="presets preview" width="100%" /></p>
 
@@ -221,7 +227,48 @@ and D take a three-stop gradient; shape A takes two.
 | [Rollup](https://rollupjs.org/) | Bundles to `dist/` |
 | CSS-only animation | No canvas / WebGL / animation lib, zero runtime deps |
 
+## 🗂️ Project Structure
+
+```
+react-ai-orb/
+├── src/                        # component source
+│   ├── components/
+│   │   ├── Orb/                # Orb component
+│   │   │   ├── Orb.tsx
+│   │   │   └── styles.css
+│   │   └── SvgElements/        # SVG inner shapes
+│   │       └── SvgElements.tsx
+│   ├── palette/
+│   │   └── colorPalettes.ts    # 8 built-in palettes
+│   ├── constants.ts
+│   ├── presets.ts              # 8 presets
+│   ├── types.ts                # OrbPalette & types
+│   └── index.ts                # entry exports
+├── demo/                       # Vite online demo
+│   ├── src/
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   └── demo.css
+│   ├── index.html
+│   ├── vite.config.ts
+│   └── package.json
+├── .github/
+│   ├── assets/                 # README banners
+│   │   ├── banner.svg
+│   │   └── banner.en.svg
+│   └── workflows/
+│       └── deploy.yml          # GitHub Pages deploy
+├── dist/                       # build output (published)
+├── rollup.config.js            # rollup config
+├── tsconfig.json
+├── package.json
+└── LICENSE
+```
+
 ## 👨‍💻 Development
+
+> [!TIP]
+> After editing `src/`, run `npm run build` to re-bundle into `dist/`.
 
 ```bash
 npm install
