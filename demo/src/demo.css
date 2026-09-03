@@ -184,7 +184,7 @@ html[data-theme="dark"] .subtitle a {
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 
 .theme-toggle:hover {
@@ -311,7 +311,7 @@ html[data-theme="dark"] .theme-toggle:hover {
   font-size: 13px;
   font-family: "Fira Code", monospace;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 
 .toggle:hover {
@@ -370,7 +370,7 @@ html[data-theme="dark"] .switch {
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
 
 .reset:hover {
@@ -492,7 +492,7 @@ html[data-theme="dark"] .switch {
   color: #c3c6d1;
   font-size: 12px;
   cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 
 .copy:hover {
@@ -531,7 +531,9 @@ html[data-theme="dark"] .switch {
   background-clip: content-box;
 }
 
-:is(.pill, .toggle, .reset, .copy, .card, .theme-toggle):active {
+/* 按下时的回弹只给按钮类控件。下拉框不参与：原生 select 在 mousedown
+   就弹出选项列表，此时再缩放整个框会看起来像抖了一下。 */
+:is(.toggle, .reset, .copy, .card, .theme-toggle):active {
   transform: scale(0.96);
 }
 
