@@ -122,7 +122,7 @@ function Toggle(props: {
       onClick={() => props.onChange(!props.value)}
     >
       <span className="switch">
-        <span className="knob" />
+        <span className="switch-dot" />
       </span>
       <span className="toggle-label">{props.label}</span>
     </button>
@@ -130,7 +130,12 @@ function Toggle(props: {
 }
 
 export default function App() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">(() =>
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light",
+  );
   const [state, setState] = useState<OrbState>(defaultState);
   const [copied, setCopied] = useState(false);
   const [pos, setPos] = useState<{ x: number; y: number } | null>(null);
@@ -208,8 +213,8 @@ export default function App() {
       </header>
 
       <section className="panel">
-        <div className="grp">
-          <label className="knob">
+        <div className="grp lead">
+          <label className="knob wide">
             调色板
             <select
               className="pill"
@@ -223,6 +228,9 @@ export default function App() {
               ))}
             </select>
           </label>
+        </div>
+
+        <div className="grp">
           <Slider
             label="尺寸"
             prop="size"
@@ -288,7 +296,7 @@ export default function App() {
           />
         </div>
 
-        <div className="grp">
+        <div className="grp row">
           <Toggle
             label="色相动画"
             hint="mainOrbHueAnimation：开=持续变色，关=固定色相"
@@ -311,19 +319,6 @@ export default function App() {
         </div>
       </section>
 
-      <section className="code-window">
-        <div className="titlebar">
-          <span className="tl red" />
-          <span className="tl yellow" />
-          <span className="tl green" />
-          <span className="filename">App.tsx</span>
-          <button type="button" className="copy" onClick={copyCode}>
-            {copied ? "已复制 ✓" : "复制"}
-          </button>
-        </div>
-        <pre className="code">{code}</pre>
-      </section>
-
       <section className="presets">
         {presets.map(({ name, props }, i) => (
           <button
@@ -344,6 +339,19 @@ export default function App() {
             <span className="card-name">{name}</span>
           </button>
         ))}
+      </section>
+
+      <section className="code-window">
+        <div className="titlebar">
+          <span className="tl red" />
+          <span className="tl yellow" />
+          <span className="tl green" />
+          <span className="filename">App.tsx</span>
+          <button type="button" className="copy" onClick={copyCode}>
+            {copied ? "已复制 ✓" : "复制"}
+          </button>
+        </div>
+        <pre className="code">{code}</pre>
       </section>
 
       <div

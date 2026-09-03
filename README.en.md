@@ -2,7 +2,7 @@
 
 [**简体中文**](./README.md) · English
 
-<img src="./.github/assets/banner.en.svg" alt="react-ai-orb" width="100%" />
+<img src="./.github/assets/banner.en.webp" alt="react-ai-orb" width="100%" />
 
 [![live demo](https://img.shields.io/badge/live_demo-GitHub_Pages-C026D3?style=for-the-badge&logo=github&logoColor=white&labelColor=1E1B4B)](https://88lin.github.io/react-ai-orb/)
 [![React](https://img.shields.io/badge/React-19-7C3AED?style=for-the-badge&logo=react&logoColor=white&labelColor=1E1B4B)](https://react.dev/)

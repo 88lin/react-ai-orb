@@ -1,20 +1,27 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 /* ============================================================
-   单一区域 · 居中流式布局（无分栏、无面板框）
-   间距：区块间 20px，组件间 12px
-   字号：22(标题) / 14(正文·标签·数值) / 13(次要) / 12(最小)
+   单一区域 · 居中流式布局（无分栏）
+   阅读顺序：顶栏 → 控制面板 → 预设 → 代码
+   间距走 4px 基准的 --s* 阶梯：组内紧、组间松
+   字号：22(标题) / 14(正文) / 13(标签·数值) / 12(次要)
    控件统一高 32px
    ============================================================ */
 :root {
+  color-scheme: light;
+
   --brand: #2b7fd8;
   --brand-deep: #1e5ba8;
   --brand-rgb: 43, 127, 216;
   --highlight: #f4d758;
   --highlight-rgb: 244, 215, 88;
-  --pop: #e84a5f;
+  /* 文字用的红要过 4.5:1，描边/图形用的红保持原来的亮度 */
+  --pop: #c8324a;
+  --pop-mark: #e84a5f;
   --pop-rgb: 232, 74, 95;
   --ink: #1a1a2e;
   --ink-light: #4a4a5a;
@@ -22,39 +29,56 @@
   --ink-rgb: 26, 26, 46;
   --cream: #fefcf6;
   --dark-panel: #151821;
-  --border: rgba(26, 26, 46, 0.1);
   --hairline: rgba(26, 26, 46, 0.07);
   --border-strong: rgba(26, 26, 46, 0.18);
   --focus-ring: #1e5ba8;
   --highlighter: linear-gradient(transparent 58%, var(--highlight) 58%);
 
   --bg: var(--cream);
+  --surface: #fffefb;
+  --track: rgba(26, 26, 46, 0.14);
   --text: var(--ink);
   --text-2: var(--ink-light);
   --text-3: var(--ink-faint);
   --chip-bg: rgba(26, 26, 46, 0.06);
   --shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-}
 
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 44px;
+}
 html[data-theme="dark"] {
+  color-scheme: dark;
+
   --bg: var(--dark-panel);
+  --surface: #1b1f2a;
+  --track: rgba(255, 255, 255, 0.16);
+  --pop: #ff8095;
+  --pop-mark: #ff8095;
   --text: #f2f3f7;
   --text-2: #c3c6d1;
   --text-3: #969aa9;
   --chip-bg: rgba(255, 255, 255, 0.08);
-  --border: rgba(255, 255, 255, 0.1);
   --hairline: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.22);
+  --focus-ring: var(--highlight);
   --shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
 body {
   margin: 0;
+  min-height: 100dvh;
+  display: grid;
   background: var(--bg);
   color: var(--text);
   font-size: 14px;
   font-family: "Noto Sans SC", -apple-system, "Segoe UI", "PingFang SC",
     "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
@@ -62,28 +86,28 @@ body {
   color: var(--ink);
 }
 
-:is(button, a, input):focus-visible {
+:is(button, a, input, select):focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
+/* auto 外边距居中：内容比视口高时也不会把顶部裁掉 */
 .app {
+  width: 100%;
   max-width: 980px;
-  margin: 0 auto;
-  padding: 20px 20px 32px;
+  margin: auto;
+  padding: var(--s5) var(--s5) var(--s6);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--s6);
 }
-
 /* ---------- 顶栏 ---------- */
 
 .topbar {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding-bottom: 4px;
+  gap: var(--s4);
 }
 
 .topbar h1 {
@@ -91,6 +115,7 @@ body {
   font-weight: 900;
   font-size: 22px;
   line-height: 1;
+  letter-spacing: -0.01em;
   margin: 0;
   flex-shrink: 0;
 }
@@ -103,16 +128,17 @@ body {
 .version {
   font-family: "Fira Code", monospace;
   font-size: 12px;
+  font-variant-numeric: tabular-nums;
   color: var(--text-3);
   vertical-align: 2px;
-  margin-left: 8px;
+  margin-left: var(--s2);
   font-weight: 400;
 }
 
 .subtitle {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--s4);
   margin: 0;
   font-size: 14px;
   color: var(--text-2);
@@ -130,7 +156,7 @@ body {
 html[data-theme="dark"] .subtitle a {
   color: var(--highlight);
 }
-
+/* 小控件的点击区扩到 44px 见方，视觉尺寸不变 */
 .toggle,
 .reset,
 .copy,
@@ -151,7 +177,7 @@ html[data-theme="dark"] .subtitle a {
 .theme-toggle {
   flex-shrink: 0;
   height: 32px;
-  padding: 0 16px;
+  padding: 0 var(--s4);
   background: transparent;
   border: 1.5px solid var(--border-strong);
   border-radius: 999px;
@@ -192,46 +218,58 @@ html[data-theme="dark"] .theme-toggle:hover {
   outline-offset: 4px;
   border-radius: 50%;
 }
-
-/* 前庭安全：用户偏好减少动效时，暂停所有球的无限动画（保留当前帧） */
-@media (prefers-reduced-motion: reduce) {
-  .floating-preview *,
-  .card * {
-    animation-play-state: paused !important;
-  }
-}
-
-/* ---------- 控件区：直接排在页面底色上 ---------- */
+/* ---------- 控制面板 ---------- */
 
 .panel {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--s4);
   background: var(--surface);
   border: 1px solid var(--hairline);
   border-radius: 16px;
-  padding: 14px 16px;
+  padding: var(--s5);
 }
 
+/* 6 个滑杆排成 3×2 的整块，标签、轨道、数值三者纵向对齐 */
 .grp {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(208px, 1fr));
+  gap: var(--s3) var(--s5);
+  align-items: center;
+}
+
+/* 调色板与开关不是滑杆，按内容宽度自然排布 */
+.grp.lead,
+.grp.row {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 22px;
+  gap: var(--s3);
   align-items: center;
+}
+
+.grp.row {
+  margin-top: var(--s1);
 }
 
 .knob {
-  display: inline-flex;
+  display: grid;
+  grid-template-columns: 4.5em 1fr 3em;
   align-items: center;
-  gap: 8px;
+  gap: var(--s2);
   font-size: 13px;
   color: var(--text-2);
   cursor: pointer;
 }
 
+/* 调色板下拉不参与三列对齐，宽度跟着内容走 */
+.knob.wide {
+  grid-template-columns: 4.5em minmax(0, 240px);
+}
+
 .pill {
   height: 32px;
-  padding: 0 12px;
+  min-width: 0;
+  padding: 0 var(--s3);
   border: 1px solid var(--border-strong);
   border-radius: 999px;
   background: var(--surface);
@@ -240,32 +278,87 @@ html[data-theme="dark"] .theme-toggle:hover {
   font-size: 13px;
   cursor: pointer;
 }
-
-.pill:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
-}
-
 .val {
   color: var(--pop);
   font-variant-numeric: tabular-nums;
   font-family: "Fira Code", monospace;
   font-size: 13px;
-  min-width: 36px;
-  display: inline-block;
+  text-align: right;
 }
+
+/* ---------- 滑杆：跟品牌蓝同一支色，不用浏览器默认件 ---------- */
 
 .knob input[type="range"] {
-  width: 118px;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  min-width: 0;
+  height: 18px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
-/* 开关行 */
+.knob input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--track);
+}
+
+.knob input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border: 2px solid var(--surface);
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.32);
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+
+.knob input[type="range"]::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--track);
+}
+
+.knob input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--surface);
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.32);
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+.knob:hover input[type="range"]::-webkit-slider-thumb,
+.knob input[type="range"]:focus-visible::-webkit-slider-thumb {
+  background: var(--brand-deep);
+}
+
+.knob:hover input[type="range"]::-moz-range-thumb,
+.knob input[type="range"]:focus-visible::-moz-range-thumb {
+  background: var(--brand-deep);
+}
+
+.knob input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.18);
+}
+
+.knob input[type="range"]:active::-moz-range-thumb {
+  transform: scale(1.18);
+}
+
+/* ---------- 开关 ---------- */
+
 .toggle {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--s2);
   height: 32px;
-  padding: 0 14px 0 8px;
+  padding: 0 14px 0 var(--s2);
   background: var(--chip-bg);
   border: none;
   border-radius: 999px;
@@ -298,7 +391,6 @@ html[data-theme="dark"] .toggle.on {
   transition: background 0.2s ease;
   flex-shrink: 0;
 }
-
 html[data-theme="dark"] .switch {
   background: rgba(255, 255, 255, 0.24);
 }
@@ -307,7 +399,7 @@ html[data-theme="dark"] .switch {
   background: var(--brand);
 }
 
-.switch .knob {
+.switch-dot {
   position: absolute;
   top: 2px;
   left: 2px;
@@ -319,7 +411,7 @@ html[data-theme="dark"] .switch {
   transition: transform 0.2s ease;
 }
 
-.toggle.on .knob {
+.toggle.on .switch-dot {
   transform: translateX(14px);
 }
 
@@ -341,7 +433,63 @@ html[data-theme="dark"] .switch {
   border-color: var(--pop);
 }
 
-/* ---------- macOS 风格代码窗口（设计系统 #5A） ---------- */
+/* ---------- 预设横排 ---------- */
+
+/* 9 个预设铺成一整行；窄屏再让它自然折行 */
+.presets {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: var(--s3);
+}
+
+@media (max-width: 880px) {
+  .presets {
+    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  }
+}
+
+.card {
+  position: relative;
+  margin: 0;
+  padding: var(--s4) var(--s2) var(--s3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  background: var(--chip-bg);
+  border: 2px dashed var(--brand);
+  border-radius: 12px;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+.card[data-tone="1"] {
+  border-color: var(--highlight);
+}
+
+.card[data-tone="2"] {
+  border-color: var(--pop-mark);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.card-name {
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--text-2);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- macOS 风格代码窗口 ---------- */
 
 .code-window {
   background: var(--dark-panel);
@@ -353,8 +501,8 @@ html[data-theme="dark"] .switch {
 .titlebar {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
+  gap: var(--s2);
+  padding: 10px var(--s4);
   background: rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -377,9 +525,8 @@ html[data-theme="dark"] .switch {
 .tl.green {
   background: #28c840;
 }
-
 .filename {
-  margin-left: 8px;
+  margin-left: var(--s2);
   font-family: "Fira Code", monospace;
   font-size: 12px;
   color: #969aa9;
@@ -393,7 +540,7 @@ html[data-theme="dark"] .switch {
 .copy {
   flex-shrink: 0;
   height: 28px;
-  padding: 0 12px;
+  padding: 0 var(--s3);
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 999px;
@@ -410,101 +557,73 @@ html[data-theme="dark"] .switch {
 
 .code {
   margin: 0;
-  padding: 16px 20px;
+  padding: var(--s4) var(--s5);
   font-size: 12.5px;
   line-height: 1.6;
   font-family: "Fira Code", monospace;
+  font-variant-numeric: tabular-nums;
   color: #c3c6d1;
   white-space: pre;
   overflow: auto;
   max-height: 280px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.24) transparent;
 }
 
-/* ---------- 区块小标题 ---------- */
-
-.section-head {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
+.code::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-.section-hint {
-  font-family: "Caveat", cursive;
-  font-size: 16px;
-  color: var(--text-3);
+.code::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  background-clip: content-box;
+}
+.code::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.34);
+  background-clip: content-box;
 }
 
-/* ---------- 预设横排 ---------- */
-
-.presets {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  gap: 12px;
+:is(.pill, .toggle, .reset, .copy, .card, .theme-toggle):active {
+  transform: scale(0.96);
 }
 
-@media (max-width: 860px) {
-  .presets {
-    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
-  }
-}
+/* ---------- 窄屏 ---------- */
 
 @media (max-width: 760px) {
+  .app {
+    padding: var(--s4) var(--s4) var(--s5);
+    gap: var(--s5);
+  }
+
   .topbar {
     flex-wrap: wrap;
     row-gap: 10px;
   }
+
   .subtitle {
     flex-basis: 100%;
     order: 3;
     justify-content: flex-start;
   }
+
+  .panel {
+    padding: var(--s4);
+  }
+
   .floating-preview {
-    right: 16px;
-    bottom: 16px;
+    right: var(--s4);
+    bottom: var(--s4);
   }
 }
 
-.card {
-  position: relative;
-  margin: 0;
-  padding: 14px 6px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--chip-bg);
-  border: 2px dashed var(--brand);
-  border-radius: 12px;
-  cursor: pointer;
-  color: inherit;
-  font: inherit;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.card[data-tone="1"] {
-  border-color: var(--highlight);
-}
-
-.card[data-tone="2"] {
-  border-color: var(--pop);
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
-}
-
-.card-name {
-  font-size: 12px;
-  line-height: 1;
-  color: var(--text-2);
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-:is(.chip, .toggle, .reset, .copy, .card, .theme-toggle):active {
-  transform: scale(0.96);
+/* 组件自己已经在 reduce 偏好下停掉动画，这里只需保证过渡不再跳动 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
 }
