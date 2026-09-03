@@ -36,7 +36,6 @@
 
   --bg: var(--cream);
   --surface: #fffefb;
-  --track: rgba(26, 26, 46, 0.14);
   --text: var(--ink);
   --text-2: var(--ink-light);
   --text-3: var(--ink-faint);
@@ -56,7 +55,6 @@ html[data-theme="dark"] {
 
   --bg: var(--dark-panel);
   --surface: #1b1f2a;
-  --track: rgba(255, 255, 255, 0.16);
   --pop: #ff8095;
   --pop-mark: #ff8095;
   --text: #f2f3f7;
@@ -261,9 +259,11 @@ html[data-theme="dark"] .theme-toggle:hover {
   cursor: pointer;
 }
 
-/* 调色板下拉不参与三列对齐，宽度跟着内容走 */
+/* 调色板下拉按内容宽度走，不被拉成整列 */
 .knob.wide {
-  grid-template-columns: 4.5em minmax(0, 240px);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
 }
 
 .pill {
@@ -286,69 +286,13 @@ html[data-theme="dark"] .theme-toggle:hover {
   text-align: right;
 }
 
-/* ---------- 滑杆：跟品牌蓝同一支色，不用浏览器默认件 ---------- */
+/* 滑杆保持浏览器原生样式，只让它填满所在列以对齐数值 */
 
 .knob input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
   width: 100%;
   min-width: 0;
-  height: 18px;
   margin: 0;
-  background: transparent;
   cursor: pointer;
-}
-
-.knob input[type="range"]::-webkit-slider-runnable-track {
-  height: 4px;
-  border-radius: 999px;
-  background: var(--track);
-}
-
-.knob input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 14px;
-  height: 14px;
-  margin-top: -5px;
-  border: 2px solid var(--surface);
-  border-radius: 50%;
-  background: var(--brand);
-  box-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.32);
-  transition: background 0.12s ease, transform 0.12s ease;
-}
-
-.knob input[type="range"]::-moz-range-track {
-  height: 4px;
-  border-radius: 999px;
-  background: var(--track);
-}
-
-.knob input[type="range"]::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  border: 2px solid var(--surface);
-  border-radius: 50%;
-  background: var(--brand);
-  box-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.32);
-  transition: background 0.12s ease, transform 0.12s ease;
-}
-.knob:hover input[type="range"]::-webkit-slider-thumb,
-.knob input[type="range"]:focus-visible::-webkit-slider-thumb {
-  background: var(--brand-deep);
-}
-
-.knob:hover input[type="range"]::-moz-range-thumb,
-.knob input[type="range"]:focus-visible::-moz-range-thumb {
-  background: var(--brand-deep);
-}
-
-.knob input[type="range"]:active::-webkit-slider-thumb {
-  transform: scale(1.18);
-}
-
-.knob input[type="range"]:active::-moz-range-thumb {
-  transform: scale(1.18);
 }
 
 /* ---------- 开关 ---------- */
