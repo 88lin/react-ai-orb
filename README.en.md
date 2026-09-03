@@ -2,13 +2,12 @@
 
 [**简体中文**](./README.md) · English
 
-<img src="./.github/assets/banner.svg" alt="react-ai-orb" width="100%" />
+<img src="./.github/assets/banner.en.svg" alt="react-ai-orb" width="100%" />
 
-[![npm version](https://img.shields.io/npm/v/react-ai-orb.svg?color=5f63f1)](https://www.npmjs.com/package/react-ai-orb)
-[![downloads](https://img.shields.io/npm/dm/react-ai-orb.svg?color=5f63f1)](https://www.npmjs.com/package/react-ai-orb)
-[![license](https://img.shields.io/npm/l/react-ai-orb.svg?color=5f63f1)](./LICENSE)
-[![types](https://img.shields.io/npm/types/react-ai-orb.svg?color=5f63f1)](https://www.typescriptlang.org/)
-[![online demo](https://img.shields.io/badge/live_demo-GitHub_Pages-5f63f1)](https://88lin.github.io/react-ai-orb/)
+[![downloads](https://img.shields.io/npm/dm/react-ai-orb.svg?color=5f63f1&label=downloads)](https://www.npmjs.com/package/react-ai-orb)
+[![license](https://img.shields.io/npm/l/react-ai-orb.svg?color=5f63f1&label=license)](./LICENSE)
+[![types](https://img.shields.io/npm/types/react-ai-orb.svg?color=5f63f1&label=types)](https://www.typescriptlang.org/)
+[![live demo](https://img.shields.io/badge/live_demo-GitHub_Pages-5f63f1?logo=github&logoColor=white)](https://88lin.github.io/react-ai-orb/)
 
 **A beautiful, customizable animated orb component for React.**
 Perfect for AI interfaces, assistants, chatbots, or anywhere you need a glowing orb. ✨
@@ -17,37 +16,63 @@ Perfect for AI interfaces, assistants, chatbots, or anywhere you need a glowing 
 
 ---
 
-## ✨ Features
+## Highlights
 
-- 🎨 **8 built-in palettes** + **8 ready-made presets** — or bring your own colors
-- ⚡ **CSS-driven animations** — no canvas, no WebGL, no animation library
-- 🔄 **Live-tunable speed** — change the speed props and the orb accelerates from where it is, without restarting
-- 📐 **Fully scalable** — from a tiny inline status dot to a full-screen centerpiece
-- 🧩 **TypeScript-first**, with types shipped in the package
-- ⚛️ **Next.js / App Router friendly**
+> A CSS-driven glowing orb with zero runtime dependencies — drop it in and go.
+
+| | |
+| :--- | :--- |
+| 🎨 **8 palettes · 8 presets** | Built-in `cosmicNebula`, `galaxy`, `oceanDepths` and more — or bring your own colors |
+| ⚡ **CSS-driven animation** | No canvas, no WebGL, no animation library — lightweight by design |
+| 🔄 **Live-tunable speed** | Change speed props at runtime and the orb accelerates from where it is, no restart |
+| 📐 **Fully scalable** | Stays crisp from a tiny inline status dot to a full-screen centerpiece |
+| 🧩 **TypeScript-first** | Types shipped in the package, end-to-end typed DX |
+| ⚛️ **Next.js friendly** | Works with App Router — just use it as a client component |
 
 ## 📑 Table of Contents
 
-- [Installation](#-installation)
-- [Usage](#-usage)
-- [Next.js](#-nextjs)
-- [Props](#-props)
-- [Presets](#-presets)
-- [Palettes](#-palettes)
-- [Development](#-development)
-- [License](#-license)
-- [Acknowledgments](#-acknowledgments)
+- [🚀 Quick Start](#-quick-start)
+- [📦 Installation](#-installation)
+- [💻 Usage](#-usage)
+- [⚛️ Next.js](#️-nextjs)
+- [⚙️ Props](#️-props)
+- [📦 Presets](#-presets-1)
+- [🎨 Palettes](#-palettes)
+- [👨‍💻 Development](#-development)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [🙏 Acknowledgments](#-acknowledgments)
 
-## 🚀 Installation
+## 🚀 Quick Start
 
 ```bash
 npm i react-ai-orb
 ```
 
-> Requires React 19 — `react` / `react-dom` `^19.0.0` are peer dependencies.
-> Still on React 18? Use `react-ai-orb@1.0.13`.
+```jsx
+import { Orb } from "react-ai-orb";
+
+export const Assistant = () => <Orb />;
+```
+
+That's it — a glowing, rotating, color-shifting orb is running.
+
+## 📦 Installation
+
+```bash
+npm i react-ai-orb
+# or
+pnpm add react-ai-orb
+# or
+yarn add react-ai-orb
+```
+
+> **Requirements:** React 19 — `react` / `react-dom` `^19.0.0` are peer dependencies.
+> Still on React 18? Install [`react-ai-orb@1.0.13`](https://www.npmjs.com/package/react-ai-orb/v/1.0.13).
 
 ## 💻 Usage
+
+### Basic
 
 ```jsx
 import { Orb } from "react-ai-orb";
@@ -57,7 +82,7 @@ const MyComponent = () => <Orb />;
 
 ### Sizing
 
-`size` is a multiplier of the orb's base 82px diameter:
+`size` is a multiplier of the orb's **base 82px diameter**:
 
 ```jsx
 <Orb size={0.5} />   {/* 41px — inline status dot */}
@@ -67,8 +92,8 @@ const MyComponent = () => <Orb />;
 
 ### Reacting to state
 
-The speed props can be changed at any time. The orb ramps up or down from its
-current position, so there is no visible jump when the value changes:
+Speed props can be changed at any time. The orb ramps up or down from its
+current position, so there is **no visible jump** when the value changes:
 
 ```jsx
 import { useState } from "react";
@@ -78,7 +103,7 @@ const Assistant = () => {
   const [isThinking, setIsThinking] = useState(false);
 
   return (
-    <button onClick={() => setIsThinking((thinking) => !thinking)}>
+    <button onClick={() => setIsThinking((t) => !t)}>
       <Orb animationSpeedBase={isThinking ? 3 : 1} />
     </button>
   );
@@ -87,7 +112,7 @@ const Assistant = () => {
 
 ## ⚛️ Next.js
 
-The component uses browser APIs, so it needs to be a client component:
+The component uses browser APIs, so it needs to be a **client component**:
 
 ```jsx
 "use client";
@@ -102,7 +127,7 @@ Every prop is optional.
 | --------------------- | ------------ | -------------- | ----------- |
 | `palette`             | `OrbPalette` | `cosmicNebula` | Colors for the orb. Use a [built-in palette](#-palettes) or a custom one. |
 | `size`                | `number`     | `1`            | Size multiplier, relative to the base 82px diameter. |
-| `animationSpeedBase`  | `number`     | `1`            | Rotation speed multiplier. Safe to change at runtime — the animation adjusts smoothly instead of restarting. |
+| `animationSpeedBase`  | `number`     | `1`            | Rotation speed multiplier. Safe to change at runtime — adjusts smoothly instead of restarting. |
 | `animationSpeedHue`   | `number`     | `1`            | Hue-shift speed multiplier. Also safe to change at runtime. |
 | `hueRotation`         | `number`     | `120`          | How far the colors travel during the hue animation, in degrees. |
 | `mainOrbHueAnimation` | `boolean`    | `false`        | Applies the hue animation to the main orb body as well as the inner shapes. |
@@ -114,7 +139,7 @@ Every prop is optional.
 
 A preset is just a bundle of props, so you can spread it and override anything.
 
-<p align="center" width="100%"><img src="https://github.com/user-attachments/assets/64c8d073-d9d9-45bb-8183-428f19963caf" /></p>
+<p align="center"><img src="https://github.com/user-attachments/assets/64c8d073-d9d9-45bb-8183-428f19963caf" alt="presets preview" width="100%" /></p>
 
 ```jsx
 import { Orb, oceanDepthsPreset } from "react-ai-orb";
@@ -176,10 +201,10 @@ and D take a three-stop gradient; shape A takes two.
 | -------------------------------------------- | -------- | ----------- |
 | `mainBgStart` / `mainBgEnd`                   | `string` | Gradient of the orb's main background. |
 | `shadowColor1` … `shadowColor4`               | `string` | The four layered shadow colors. |
-| `shapeAStart` / `shapeAEnd`                    | `string` | Gradient of shape A. |
-| `shapeBStart` / `shapeBMiddle` / `shapeBEnd`   | `string` | Gradient of shape B. |
-| `shapeCStart` / `shapeCMiddle` / `shapeCEnd`   | `string` | Gradient of shape C. |
-| `shapeDStart` / `shapeDMiddle` / `shapeDEnd`   | `string` | Gradient of shape D. |
+| `shapeAStart` / `shapeAEnd`                   | `string` | Gradient of shape A. |
+| `shapeBStart` / `shapeBMiddle` / `shapeBEnd`  | `string` | Gradient of shape B. |
+| `shapeCStart` / `shapeCMiddle` / `shapeCEnd`  | `string` | Gradient of shape C. |
+| `shapeDStart` / `shapeDMiddle` / `shapeDEnd`  | `string` | Gradient of shape D. |
 
 </details>
 
@@ -198,19 +223,25 @@ npm install
 npm run dev
 ```
 
+## 🤝 Contributing
+
+Issues and PRs are welcome — new palettes, new presets, bug fixes, or docs improvements.
+
 ## 📄 License
 
-[MIT](./LICENSE) © 88lin
+[MIT](./LICENSE) © [88lin](https://github.com/88lin)
 
 ## 🙏 Acknowledgments
 
-This project is a fork of / built on top of
+This project is built on top of
 [Steve0929/react-ai-orb](https://github.com/Steve0929/react-ai-orb) —
 many thanks to the original author [@Steve0929](https://github.com/Steve0929)
 for the excellent work.
 
+---
+
 <div align="center">
 
-Made with 🔮
+Made with 🔮 · [Live Demo](https://88lin.github.io/react-ai-orb/) · [Report an Issue](https://github.com/88lin/react-ai-orb/issues)
 
 </div>

@@ -2,52 +2,74 @@
 
 简体中文 · **[English](./README.en.md)**
 
-<img src="./.github/assets/banner.svg" alt="react-ai-orb" width="100%" />
+![react-ai-orb](./.github/assets/banner.svg)
 
-[![npm version](https://img.shields.io/npm/v/react-ai-orb.svg?color=5f63f1)](https://www.npmjs.com/package/react-ai-orb)
-[![downloads](https://img.shields.io/npm/dm/react-ai-orb.svg?color=5f63f1)](https://www.npmjs.com/package/react-ai-orb)
-[![license](https://img.shields.io/npm/l/react-ai-orb.svg?color=5f63f1)](./LICENSE)
-[![types](https://img.shields.io/npm/types/react-ai-orb.svg?color=5f63f1)](https://www.typescriptlang.org/)
-[![在线预览](https://img.shields.io/badge/在线预览-GitHub_Pages-5f63f1)](https://88lin.github.io/react-ai-orb/)
+![downloads](https://img.shields.io/npm/dm/react-ai-orb.svg?color=5f63f1\&label=downloads) ![license](https://img.shields.io/npm/l/react-ai-orb.svg?color=5f63f1\&label=license) ![types](https://img.shields.io/npm/types/react-ai-orb.svg?color=5f63f1\&label=types) ![在线预览](https://img.shields.io/badge/在线预览-GitHub_Pages-5f63f1?logo=github\&logoColor=white)
 
-**A beautiful, customizable animated orb component for React.**
-适合 AI 界面、助手、聊天机器人，或者任何需要一颗发光球体的地方 ✨
+**一个美观、可定制的 React 动画球体组件。**
+适合 AI 界面、智能助手、聊天机器人，或者任何需要一颗发光球体的地方 ✨
 
 </div>
 
 ---
 
-## ✨ 特性
+## 亮点
 
-- 🎨 **8 套内置调色板** + **8 个开箱即用的预设**，也支持完全自定义颜色
-- ⚡ **纯 CSS 动画** —— 不依赖 canvas、WebGL 或任何动画库
-- 🔄 **速度实时可调** —— 运行时修改速度属性，球会从当前位置平滑加速，不会跳帧重启
-- 📐 **任意缩放** —— 从内联状态点到全屏主角都清晰
-- 🧩 **TypeScript 优先**，类型随包发布
-- ⚛️ **兼容 Next.js / App Router**
+> 纯 CSS 驱动的发光球体，零运行时依赖，开箱即用。
+
+| | |
+| :--- | :--- |
+| 🎨 **8 套调色板 · 8 个预设** | 内置 `cosmicNebula`、`galaxy`、`oceanDepths` 等，也支持完全自定义颜色 |
+| ⚡ **纯 CSS 动画** | 不依赖 canvas、WebGL 或任何动画库，性能轻盈 |
+| 🔄 **速度实时可调** | 运行时修改速度属性，球体从当前位置平滑加速，不会跳帧重启 |
+| 📐 **任意缩放** | 从内联状态点到全屏主视觉都清晰锐利 |
+| 🧩 **TypeScript 优先** | 类型定义随包发布，开发体验完整 |
+| ⚛️ **Next.js 友好** | 兼容 App Router，按客户端组件使用即可 |
 
 ## 📑 目录
 
-- [安装](#-安装)
-- [用法](#-用法)
-- [Next.js](#-nextjs)
-- [Props](#-props)
-- [预设](#-预设)
-- [调色板](#-调色板)
-- [开发](#-开发)
-- [许可证](#-许可证)
-- [致谢](#-致谢)
+- [🚀 快速开始](#-快速开始)
+- [📦 安装](#-安装)
+- [💻 用法](#-用法)
+- [⚛️ Next.js](#️-nextjs)
+- [⚙️ Props](#️-props)
+- [📦 预设](#-预设)
+- [🎨 调色板](#-调色板)
+- [👨‍💻 开发](#-开发)
+- [🤝 贡献](#-贡献)
+- [📄 许可证](#-许可证)
+- [🙏 致谢](#-致谢)
 
-## 🚀 安装
+## 🚀 快速开始
 
 ```bash
 npm i react-ai-orb
 ```
 
-> 需要 React 19，`react` / `react-dom` `^19.0.0` 为 peer 依赖。
-> 还在用 React 18？请安装 `react-ai-orb@1.0.13`。
+```jsx
+import { Orb } from "react-ai-orb";
+
+export const Assistant = () => <Orb />;
+```
+
+就这么简单——一颗会发光、会旋转、会变色的球体已经跑起来了。
+
+## 📦 安装
+
+```bash
+npm i react-ai-orb
+# 或
+pnpm add react-ai-orb
+# 或
+yarn add react-ai-orb
+```
+
+> **环境要求**：React 19（`react` / `react-dom` `^19.0.0` 为 peer 依赖）。
+> 仍在用 React 18？请安装 [`react-ai-orb@1.0.13`](https://www.npmjs.com/package/react-ai-orb/v/1.0.13)。
 
 ## 💻 用法
+
+### 基础用法
 
 ```jsx
 import { Orb } from "react-ai-orb";
@@ -57,7 +79,7 @@ const MyComponent = () => <Orb />;
 
 ### 尺寸
 
-`size` 是相对于 82px 基准直径的倍数：
+`size` 是相对于 **82px 基准直径**的倍数：
 
 ```jsx
 <Orb size={0.5} />   {/* 41px — 内联状态点 */}
@@ -67,7 +89,7 @@ const MyComponent = () => <Orb />;
 
 ### 响应状态变化
 
-速度类属性可以随时修改，球会从当前状态平滑过渡，不会跳回起始帧：
+速度类属性可以随时修改，球体会从当前状态平滑过渡，**不会跳回起始帧**：
 
 ```jsx
 import { useState } from "react";
@@ -77,7 +99,7 @@ const Assistant = () => {
   const [isThinking, setIsThinking] = useState(false);
 
   return (
-    <button onClick={() => setIsThinking((thinking) => !thinking)}>
+    <button onClick={() => setIsThinking((t) => !t)}>
       <Orb animationSpeedBase={isThinking ? 3 : 1} />
     </button>
   );
@@ -86,7 +108,7 @@ const Assistant = () => {
 
 ## ⚛️ Next.js
 
-组件使用了浏览器 API，需要作为客户端组件使用：
+组件使用了浏览器 API，需要作为**客户端组件**使用：
 
 ```jsx
 "use client";
@@ -95,7 +117,7 @@ import { Orb } from "react-ai-orb";
 
 ## ⚙️ Props
 
-所有属性均可选。
+所有属性均为可选。
 
 | Prop                  | 类型         | 默认值         | 说明 |
 | --------------------- | ------------ | -------------- | ---- |
@@ -111,9 +133,9 @@ import { Orb } from "react-ai-orb";
 
 ## 📦 预设
 
-预设就是一组 props 的集合，可以直接展开并覆盖任意属性。
+预设就是一组 props 的集合，可以直接展开，再覆盖任意属性。
 
-<p align="center" width="100%"><img src="https://github.com/user-attachments/assets/64c8d073-d9d9-45bb-8183-428f19963caf" /></p>
+<p align="center"><img src="https://github.com/user-attachments/assets/64c8d073-d9d9-45bb-8183-428f19963caf" alt="presets preview" width="100%" /></p>
 
 ```jsx
 import { Orb, oceanDepthsPreset } from "react-ai-orb";
@@ -126,16 +148,16 @@ const BiggerAndFaster = () => (
 );
 ```
 
-| 预设                      | 调色板          | 额外调整 |
-| ------------------------- | --------------- | -------- |
-| 🪼 `oceanDepthsPreset`    | `oceanDepths`   | 光斑 B 更淡 |
-| 🌌 `galaxyPreset`         | `galaxy`        | 转速更快、360° 全幅变色、光斑 B 更淡 |
-| 🌊 `caribeanPreset`       | `caribean`      | — |
-| 🌸 `cherryBlossomPreset`  | `cherryBlossom` | 关闭变色 |
-| ❇️ `emeraldPreset`        | `emerald`       | 关闭变色、光斑 B 更淡 |
-| 🦄 `multiColorPreset`     | `cosmicNebula`  | 全球缓慢变色 |
-| ☀️ `goldenGlowPreset`     | `goldenGlow`    | 关闭变色、光斑 B 更淡 |
-| 🌋 `volcanicPreset`       | `volcanic`      | 关闭变色、光斑 B 更淡 |
+| 预设                     | 调色板          | 额外调整 |
+| ------------------------ | --------------- | -------- |
+| 🪼 `oceanDepthsPreset`   | `oceanDepths`   | 光斑 B 更淡 |
+| 🌌 `galaxyPreset`        | `galaxy`        | 转速更快、360° 全幅变色、光斑 B 更淡 |
+| 🌊 `caribeanPreset`      | `caribean`      | — |
+| 🌸 `cherryBlossomPreset` | `cherryBlossom` | 关闭变色 |
+| ❇️ `emeraldPreset`       | `emerald`       | 关闭变色、光斑 B 更淡 |
+| 🦄 `multiColorPreset`    | `cosmicNebula`  | 全球缓慢变色 |
+| ☀️ `goldenGlowPreset`    | `goldenGlow`    | 关闭变色、光斑 B 更淡 |
+| 🌋 `volcanicPreset`      | `volcanic`      | 关闭变色、光斑 B 更淡 |
 
 ## 🎨 调色板
 
@@ -172,12 +194,12 @@ const MyComponent = () => <Orb palette={midnight} />;
 
 | 属性                                          | 类型     | 说明 |
 | --------------------------------------------- | -------- | ---- |
-| `mainBgStart` / `mainBgEnd`                    | `string` | 主球背景渐变 |
-| `shadowColor1` … `shadowColor4`                | `string` | 四层投影颜色 |
-| `shapeAStart` / `shapeAEnd`                    | `string` | 内形 A 渐变 |
-| `shapeBStart` / `shapeBMiddle` / `shapeBEnd`   | `string` | 内形 B 渐变 |
-| `shapeCStart` / `shapeCMiddle` / `shapeCEnd`   | `string` | 内形 C 渐变 |
-| `shapeDStart` / `shapeDMiddle` / `shapeDEnd`   | `string` | 内形 D 渐变 |
+| `mainBgStart` / `mainBgEnd`                   | `string` | 主球背景渐变 |
+| `shadowColor1` … `shadowColor4`               | `string` | 四层投影颜色 |
+| `shapeAStart` / `shapeAEnd`                   | `string` | 内形 A 渐变 |
+| `shapeBStart` / `shapeBMiddle` / `shapeBEnd`  | `string` | 内形 B 渐变 |
+| `shapeCStart` / `shapeCMiddle` / `shapeCEnd`  | `string` | 内形 C 渐变 |
+| `shapeDStart` / `shapeDMiddle` / `shapeDEnd`  | `string` | 内形 D 渐变 |
 
 </details>
 
@@ -196,17 +218,23 @@ npm install
 npm run dev
 ```
 
+## 🤝 贡献
+
+欢迎提交 Issue 或 PR——新调色板、新预设、bug 修复或文档改进都可以。
+
 ## 📄 许可证
 
-[MIT](./LICENSE) © 88lin
+[MIT](./LICENSE) © [88lin](https://github.com/88lin)
 
 ## 🙏 致谢
 
-本项目基于 [Steve0929/react-ai-orb](https://github.com/Steve0929/react-ai-orb) 进行二次开发，
+本项目基于 [Steve0929/react-ai-orb](https://github.com/Steve0929/react-ai-orb) 二次开发，
 感谢原作者 [@Steve0929](https://github.com/Steve0929) 的出色工作。
+
+---
 
 <div align="center">
 
-Made with 🔮
+Made with 🔮 · [在线预览](https://88lin.github.io/react-ai-orb/) · [报告问题](https://github.com/88lin/react-ai-orb/issues)
 
 </div>
