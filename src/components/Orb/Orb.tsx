@@ -131,11 +131,11 @@ export const Orb = ({
       }}
     >
       <div className="orb-main">
-        <div className="glass loc-glass" />
-        <div className="shape-a loc-a" />
-        <div className="shape-b loc-b" />
-        <div className="shape-c loc-c" />
-        <div className="shape-d loc-d" />
+        <div className="orb-glass orb-loc-glass" />
+        <div className="orb-shape-a orb-loc-a" />
+        <div className="orb-shape-b orb-loc-b" />
+        <div className="orb-shape-c orb-loc-c" />
+        <div className="orb-shape-d orb-loc-d" />
 
         <SvgElements color1={palette.mainBgStart} color2={palette.mainBgEnd} />
       </div>

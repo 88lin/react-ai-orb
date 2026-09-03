@@ -29,36 +29,48 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = ".orb-main{animation:var(--main-hue-animation);background-image:radial-gradient(circle at 50% 30%,var(--main-bg-start) 0,var(--main-bg-end) 70%);border-radius:50%;box-shadow:var(--main-shadow);cursor:pointer;display:flex;height:var(--react-ai-orb-size);overflow:hidden;position:relative;width:var(--react-ai-orb-size)}.loc-a{position:absolute}.loc-b{left:10%}.loc-b,.loc-c{position:absolute;top:5%}.loc-c,.loc-d{left:5%}.loc-d{position:absolute;top:5%}.loc-glass{left:50%;position:absolute;top:50%;transform:translate(-50%,-50%)}.shape-a{animation:rotateDiagonal var(--animation-rotation-speed-base) linear infinite,hueShift var(--animation-hue-speed-base) linear infinite;background-image:radial-gradient(circle at 50% 90%,var(--shape-a-start) 0,var(--shape-a-end) 70%)}.shape-a,.shape-b{border-radius:50%;height:var(--shapes-size);transform-style:preserve-3d;width:var(--shapes-size)}.shape-b{animation:rotateDiagonal calc(var(--animation-rotation-speed-base) + var(--animation-rotation-speed-base)*.5) linear infinite,hueShift calc(var(--animation-hue-speed-base) + var(--animation-hue-speed-base)*.5) linear infinite;background:radial-gradient(circle at 33% 12%,var(--shape-b-start) 0,var(--shape-b-middle) 26%,var(--shape-b-end) 63%);filter:blur(2px);mix-blend-mode:soft-light;will-change:transform}.shape-c{animation:rotateDiagonal calc(var(--animation-rotation-speed-base) + var(--animation-rotation-speed-base)*1) linear infinite,hueShift calc(var(--animation-hue-speed-base) + var(--animation-hue-speed-base)*1) linear infinite;background-image:radial-gradient(circle at 31% 12%,var(--shape-c-start) 0,var(--shape-c-middle) 31%,var(--shape-c-end) 77%);mix-blend-mode:color-dodge;opacity:.65}.shape-c,.shape-d{border-radius:50%;filter:blur(1px);height:var(--shapes-size);transform-style:preserve-3d;width:var(--shapes-size)}.shape-d{animation:rotateDiagonal calc(var(--animation-rotation-speed-base) + var(--animation-rotation-speed-base)*1.5) linear infinite,hueShift calc(var(--animation-hue-speed-base) + var(--animation-hue-speed-base)*1.5) linear infinite;background-image:radial-gradient(circle at 12% 80%,var(--shape-d-start) 0,var(--shape-d-middle) 31%,var(--shape-d-end) 77%);mix-blend-mode:color;opacity:.55}.glass{background:transparent;border-radius:50%;box-shadow:inset 0 -1px 6px 1px hsla(0,0%,100%,.5),inset 0 3px 4px 0 hsla(0,0%,100%,.5);height:var(--shapes-size);opacity:.8;width:var(--shapes-size)}.blob-a{animation:rotateDiagonal calc(var(--animation-rotation-speed-base) + var(--animation-rotation-speed-base)*2) linear infinite,hueShift calc(var(--animation-hue-speed-base) + var(--animation-hue-speed-base)*2) linear infinite;mix-blend-mode:screen;opacity:var(--blob-a-opacity)}.blob-b{animation:rotateDiagonal calc(var(--animation-rotation-speed-base) + var(--animation-rotation-speed-base)*2.5) linear infinite,hueShift calc(var(--animation-hue-speed-base) + var(--animation-hue-speed-base)*2.5) linear infinite;mix-blend-mode:lighten;opacity:var(--blob-b-opacity)}.blob-b,.blob-shine{position:absolute;top:0}.blob-shine{fill:#fff;animation:expand 3.5s linear infinite;filter:blur(15px);mix-blend-mode:hard-light;opacity:.9;transform:scale(.4)}.shine-b{animation:expand-b 5s ease-in-out infinite;left:15%;mix-blend-mode:plus-lighter;opacity:.3}@keyframes expand{0%{transform:scale(.4)}50%{transform:scale(.1)}to{transform:scale(.4)}}@keyframes expand-b{0%{transform:scale(.6)}50%{transform:scale(.1)}to{transform:scale(.6)}}@keyframes rotateDiagonal{0%{transform:rotate3d(1,1,1,0deg)}to{transform:rotate3d(1,1,1,1turn)}}@keyframes hueShift{0%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(var(--hue-rotation))}to{filter:hue-rotate(0deg)}}@keyframes circleAnimation{0%{transform:rotate(-120deg)}50%{transform:rotate(0)}to{transform:rotate(-120deg)}}";
+var css_248z = ".orb-main{animation:var(--main-hue-animation);background-image:radial-gradient(circle at 50% 30%,var(--main-bg-start) 0,var(--main-bg-end) 70%);border-radius:50%;box-shadow:var(--main-shadow);cursor:pointer;display:flex;height:var(--react-ai-orb-size);overflow:hidden;position:relative;width:var(--react-ai-orb-size)}.orb-loc-a{position:absolute}.orb-loc-b{left:10%}.orb-loc-b,.orb-loc-c{position:absolute;top:5%}.orb-loc-c{left:5%}.orb-loc-d{left:5%;position:absolute;top:5%}.orb-loc-glass{left:50%;position:absolute;top:50%;transform:translate(-50%,-50%)}.orb-shape-a{animation:rotateDiagonal var(--animation-rotation-speed-base) linear infinite,hueShift var(--animation-hue-speed-base) linear infinite;background-image:radial-gradient(circle at 50% 90%,var(--shape-a-start) 0,var(--shape-a-end) 70%)}.orb-shape-a,.orb-shape-b{border-radius:50%;height:var(--shapes-size);transform-style:preserve-3d;width:var(--shapes-size)}.orb-shape-b{animation:rotateDiagonal calc(var(--animation-rotation-speed-base) + var(--animation-rotation-speed-base)*.5) linear infinite,hueShift calc(var(--animation-hue-speed-base) + var(--animation-hue-speed-base)*.5) linear infinite;background:radial-gradient(circle at 33% 12%,var(--shape-b-start) 0,var(--shape-b-middle) 26%,var(--shape-b-end) 63%);filter:blur(2px);mix-blend-mode:soft-light;will-change:transform}.orb-shape-c{animation:rotateDiagonal calc(var(--animation-rotation-speed-base) + var(--animation-rotation-speed-base)*1) linear infinite,hueShift calc(var(--animation-hue-speed-base) + var(--animation-hue-speed-base)*1) linear infinite;background-image:radial-gradient(circle at 31% 12%,var(--shape-c-start) 0,var(--shape-c-middle) 31%,var(--shape-c-end) 77%);mix-blend-mode:color-dodge;opacity:.65}.orb-shape-c,.orb-shape-d{border-radius:50%;filter:blur(1px);height:var(--shapes-size);transform-style:preserve-3d;width:var(--shapes-size)}.orb-shape-d{animation:rotateDiagonal calc(var(--animation-rotation-speed-base) + var(--animation-rotation-speed-base)*1.5) linear infinite,hueShift calc(var(--animation-hue-speed-base) + var(--animation-hue-speed-base)*1.5) linear infinite;background-image:radial-gradient(circle at 12% 80%,var(--shape-d-start) 0,var(--shape-d-middle) 31%,var(--shape-d-end) 77%);mix-blend-mode:color;opacity:.55}.orb-glass{background:transparent;border-radius:50%;box-shadow:inset 0 -1px 6px 1px hsla(0,0%,100%,.5),inset 0 3px 4px 0 hsla(0,0%,100%,.5);height:var(--shapes-size);opacity:.8;width:var(--shapes-size)}.orb-blob-a{animation:rotateDiagonal calc(var(--animation-rotation-speed-base) + var(--animation-rotation-speed-base)*2) linear infinite,hueShift calc(var(--animation-hue-speed-base) + var(--animation-hue-speed-base)*2) linear infinite;mix-blend-mode:screen;opacity:var(--blob-a-opacity)}.orb-blob-b{animation:rotateDiagonal calc(var(--animation-rotation-speed-base) + var(--animation-rotation-speed-base)*2.5) linear infinite,hueShift calc(var(--animation-hue-speed-base) + var(--animation-hue-speed-base)*2.5) linear infinite;mix-blend-mode:lighten;opacity:var(--blob-b-opacity);position:absolute;top:0}.orb-blob-shine{fill:#fff;animation:expand 3.5s linear infinite;filter:blur(15px);mix-blend-mode:hard-light;opacity:.9;position:absolute;top:0;transform:scale(.4)}.orb-shine-b{animation:expand-b 5s ease-in-out infinite;left:15%;mix-blend-mode:plus-lighter;opacity:.3}@keyframes expand{0%{transform:scale(.4)}50%{transform:scale(.1)}to{transform:scale(.4)}}@keyframes expand-b{0%{transform:scale(.6)}50%{transform:scale(.1)}to{transform:scale(.6)}}@keyframes rotateDiagonal{0%{transform:rotate3d(1,1,1,0deg)}to{transform:rotate3d(1,1,1,1turn)}}@keyframes hueShift{0%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(var(--hue-rotation))}to{filter:hue-rotate(0deg)}}@media (prefers-reduced-motion:reduce){.orb-blob-a,.orb-blob-b,.orb-blob-shine,.orb-main,.orb-shape-a,.orb-shape-b,.orb-shape-c,.orb-shape-d{animation:none}}";
 styleInject(css_248z);
 
+const blobAPath = "M23.3,-31.9C28.4,-28.4,29.5,-19.2,31.1,-10.9C32.6,-2.6,34.7,4.7,33.5,11.7C32.3,18.6,27.8,25.3,21.6,28.8C15.5,32.3,7.8,32.6,-0.6,33.5C-9,34.4,-18.1,35.8,-24.8,32.5C-31.5,29.2,-35.9,21.2,-36.5,13.3C-37.2,5.4,-34.1,-2.4,-31.6,-10.4C-29.1,-18.3,-27.2,-26.6,-22.1,-30.1C-16.9,-33.6,-8.4,-32.3,0.3,-32.8C9.1,-33.3,18.2,-35.4,23.3,-31.9Z";
+const blobBPath = "M19.2,-27.1C25.6,-29.4,32.3,-26,33.8,-20.5C35.3,-15,31.7,-7.5,27.8,-2.2C23.9,3,19.8,6,16.8,8.9C13.8,11.8,11.9,14.6,9.3,18.8C6.7,23,3.3,28.6,-0.7,29.8C-4.7,31,-9.4,27.8,-16.7,26.2C-23.9,24.7,-33.6,24.8,-39.3,20.7C-45.1,16.7,-47,8.3,-45.4,0.9C-43.8,-6.5,-38.8,-13,-32.6,-16.3C-26.4,-19.6,-18.9,-19.7,-13.3,-17.9C-7.6,-16,-3.8,-12.2,1.3,-14.4C6.3,-16.6,12.7,-24.8,19.2,-27.1Z";
+const shinePath = "M12.3,-22.8C17.4,-18.4,23.8,-17.9,26.8,-14.8C29.8,-11.6,29.5,-5.8,29,-0.3C28.6,5.3,28,10.6,26.9,17.1C25.9,23.7,24.3,31.5,19.7,32.2C15.2,32.8,7.6,26.3,0.6,25.3C-6.4,24.3,-12.9,28.9,-16.8,27.9C-20.8,26.9,-22.3,20.3,-23.8,14.7C-25.3,9.2,-26.9,4.6,-30.1,-1.8C-33.3,-8.3,-38.1,-16.5,-35.4,-20.1C-32.7,-23.6,-22.5,-22.4,-15.3,-25.5C-8.2,-28.6,-4.1,-36,-0.2,-35.6C3.6,-35.2,7.3,-27.1,12.3,-22.8Z";
 const SvgElements = ({ color1, color2 }) => {
+    // Gradient ids must be unique per orb. With a shared id, every orb on the page
+    // resolves url(#...) to whichever gradient the browser saw first, so orbs with
+    // different palettes would all paint their blobs in the first orb's colors.
+    // useId is stable across server and client render, so hydration still matches.
+    const instanceId = `orb-${React.useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
+    const blobAGradient = `${instanceId}-blob-a`;
+    const blobBGradient = `${instanceId}-blob-b`;
+    const shineGradient = `${instanceId}-blob-shine`;
+    const shineBGradient = `${instanceId}-blob-shine-b`;
     return (React.createElement(React.Fragment, null,
-        React.createElement("svg", { id: "sw-js-blob-svg", viewBox: "0 0 100 100", xmlns: "http://www.w3.org/2000/svg", version: "1.1", className: "blob-a" },
+        React.createElement("svg", { viewBox: "0 0 100 100", xmlns: "http://www.w3.org/2000/svg", className: "orb-blob-a" },
             React.createElement("defs", null,
-                React.createElement("linearGradient", { id: "blob-a-gradient", x1: "0", x2: "1", y1: "1", y2: "0" },
-                    React.createElement("stop", { id: "stop1", stopColor: color1, offset: "0%" }),
-                    React.createElement("stop", { id: "stop2", stopColor: color2, offset: "100%" }))),
-            React.createElement("path", { fill: "url(#blob-a-gradient)", d: "M23.3,-31.9C28.4,-28.4,29.5,-19.2,31.1,-10.9C32.6,-2.6,34.7,4.7,33.5,11.7C32.3,18.6,27.8,25.3,21.6,28.8C15.5,32.3,7.8,32.6,-0.6,33.5C-9,34.4,-18.1,35.8,-24.8,32.5C-31.5,29.2,-35.9,21.2,-36.5,13.3C-37.2,5.4,-34.1,-2.4,-31.6,-10.4C-29.1,-18.3,-27.2,-26.6,-22.1,-30.1C-16.9,-33.6,-8.4,-32.3,0.3,-32.8C9.1,-33.3,18.2,-35.4,23.3,-31.9Z", width: "100%", height: "100%", transform: "translate(50 50)", strokeWidth: "0", style: { transition: "0.3s" } })),
-        React.createElement("svg", { id: "sw-js-blob-svg", viewBox: "0 0 100 100", xmlns: "http://www.w3.org/2000/svg", version: "1.1", className: "blob-b" },
+                React.createElement("linearGradient", { id: blobAGradient, x1: "0", x2: "1", y1: "1", y2: "0" },
+                    React.createElement("stop", { stopColor: color1, offset: "0%" }),
+                    React.createElement("stop", { stopColor: color2, offset: "100%" }))),
+            React.createElement("path", { fill: `url(#${blobAGradient})`, d: blobAPath, transform: "translate(50 50)", strokeWidth: "0" })),
+        React.createElement("svg", { viewBox: "0 0 100 100", xmlns: "http://www.w3.org/2000/svg", className: "orb-blob-b" },
             React.createElement("defs", null,
-                React.createElement("linearGradient", { id: "blob-b-gradient", x1: "0", x2: "1", y1: "1", y2: "0" },
-                    React.createElement("stop", { id: "stop1", stopColor: color1, offset: "0%" }),
-                    React.createElement("stop", { id: "stop2", stopColor: color2, offset: "100%" }))),
-            React.createElement("path", { fill: "url(#blob-b-gradient)", d: "M19.2,-27.1C25.6,-29.4,32.3,-26,33.8,-20.5C35.3,-15,31.7,-7.5,27.8,-2.2C23.9,3,19.8,6,16.8,8.9C13.8,11.8,11.9,14.6,9.3,18.8C6.7,23,3.3,28.6,-0.7,29.8C-4.7,31,-9.4,27.8,-16.7,26.2C-23.9,24.7,-33.6,24.8,-39.3,20.7C-45.1,16.7,-47,8.3,-45.4,0.9C-43.8,-6.5,-38.8,-13,-32.6,-16.3C-26.4,-19.6,-18.9,-19.7,-13.3,-17.9C-7.6,-16,-3.8,-12.2,1.3,-14.4C6.3,-16.6,12.7,-24.8,19.2,-27.1Z", width: "100%", height: "100%", transform: "translate(50 50)", strokeWidth: "0", style: { transition: "0.3s" } })),
-        React.createElement("svg", { id: "sw-js-blob-svg", viewBox: "0 0 100 100", xmlns: "http://www.w3.org/2000/svg", version: "1.1", className: "blob-shine" },
+                React.createElement("linearGradient", { id: blobBGradient, x1: "0", x2: "1", y1: "1", y2: "0" },
+                    React.createElement("stop", { stopColor: color1, offset: "0%" }),
+                    React.createElement("stop", { stopColor: color2, offset: "100%" }))),
+            React.createElement("path", { fill: `url(#${blobBGradient})`, d: blobBPath, transform: "translate(50 50)", strokeWidth: "0" })),
+        React.createElement("svg", { viewBox: "0 0 100 100", xmlns: "http://www.w3.org/2000/svg", className: "orb-blob-shine" },
             React.createElement("defs", null,
-                React.createElement("linearGradient", { id: "blob-shine-gradient", x1: "0", x2: "1", y1: "1", y2: "0" },
-                    React.createElement("stop", { id: "stop1", stopColor: "white", offset: "0%" }))),
-            React.createElement("path", { fill: "url(#blob-shine-gradient)", d: "M12.3,-22.8C17.4,-18.4,23.8,-17.9,26.8,-14.8C29.8,-11.6,29.5,-5.8,29,-0.3C28.6,5.3,28,10.6,26.9,17.1C25.9,23.7,24.3,31.5,19.7,32.2C15.2,32.8,7.6,26.3,0.6,25.3C-6.4,24.3,-12.9,28.9,-16.8,27.9C-20.8,26.9,-22.3,20.3,-23.8,14.7C-25.3,9.2,-26.9,4.6,-30.1,-1.8C-33.3,-8.3,-38.1,-16.5,-35.4,-20.1C-32.7,-23.6,-22.5,-22.4,-15.3,-25.5C-8.2,-28.6,-4.1,-36,-0.2,-35.6C3.6,-35.2,7.3,-27.1,12.3,-22.8Z", width: "100%", height: "100%", transform: "translate(50 50)", strokeWidth: "0", style: { transition: "0.3s" } })),
-        React.createElement("svg", { id: "sw-js-blob-svg", viewBox: "0 0 100 100", xmlns: "http://www.w3.org/2000/svg", version: "1.1", className: "blob-shine shine-b" },
+                React.createElement("linearGradient", { id: shineGradient, x1: "0", x2: "1", y1: "1", y2: "0" },
+                    React.createElement("stop", { stopColor: "white", offset: "0%" }))),
+            React.createElement("path", { fill: `url(#${shineGradient})`, d: shinePath, transform: "translate(50 50)", strokeWidth: "0" })),
+        React.createElement("svg", { viewBox: "0 0 100 100", xmlns: "http://www.w3.org/2000/svg", className: "orb-blob-shine orb-shine-b" },
             React.createElement("defs", null,
-                React.createElement("linearGradient", { id: "blob-shine-gradient", x1: "0", x2: "1", y1: "1", y2: "0" },
-                    React.createElement("stop", { id: "stop1", stopColor: "white", offset: "0%" }))),
-            React.createElement("path", { fill: "url(#blob-shine-gradient)", d: "M12.3,-22.8C17.4,-18.4,23.8,-17.9,26.8,-14.8C29.8,-11.6,29.5,-5.8,29,-0.3C28.6,5.3,28,10.6,26.9,17.1C25.9,23.7,24.3,31.5,19.7,32.2C15.2,32.8,7.6,26.3,0.6,25.3C-6.4,24.3,-12.9,28.9,-16.8,27.9C-20.8,26.9,-22.3,20.3,-23.8,14.7C-25.3,9.2,-26.9,4.6,-30.1,-1.8C-33.3,-8.3,-38.1,-16.5,-35.4,-20.1C-32.7,-23.6,-22.5,-22.4,-15.3,-25.5C-8.2,-28.6,-4.1,-36,-0.2,-35.6C3.6,-35.2,7.3,-27.1,12.3,-22.8Z", width: "100%", height: "100%", transform: "translate(50 50)", strokeWidth: "0", style: { transition: "0.3s" } }))));
+                React.createElement("linearGradient", { id: shineBGradient, x1: "0", x2: "1", y1: "1", y2: "0" },
+                    React.createElement("stop", { stopColor: "white", offset: "0%" }))),
+            React.createElement("path", { fill: `url(#${shineBGradient})`, d: shinePath, transform: "translate(50 50)", strokeWidth: "0" }))));
 };
 
-const colorPalettes = {
+const palettes = {
     cosmicNebula: {
         mainBgStart: "rgb(236, 133, 255)",
         mainBgEnd: "rgb(49, 138, 255)",
@@ -78,7 +90,7 @@ const colorPalettes = {
         shapeDMiddle: "rgba(142, 111, 255, 0)",
         shapeDEnd: "#00eeff",
     },
-    caribean: {
+    caribbean: {
         mainBgStart: "rgb(64, 224, 208)",
         mainBgEnd: "rgb(76, 189, 255)",
         shadowColor1: "rgba(8, 226, 255, 0)",
@@ -212,6 +224,22 @@ const colorPalettes = {
         shapeDEnd: "rgba(255, 69, 0, 0.8)",
     },
 };
+const colorPalettes = Object.assign(Object.assign({}, palettes), { 
+    // Shipped as `caribean` up to v1.1.0; the misspelling stays as an alias to the
+    // same palette so existing code keeps working.
+    caribean: palettes.caribbean });
+// Canonical palette names, without the deprecated `caribean` alias — handy for
+// listing every palette exactly once (palette pickers, docs, tests).
+const paletteNames = [
+    "cosmicNebula",
+    "caribbean",
+    "cherryBlossom",
+    "galaxy",
+    "oceanDepths",
+    "emerald",
+    "goldenGlow",
+    "volcanic",
+];
 
 const baseOrbSize = 82; // Base size of the main orb in px
 const baseShapeSize = 72; // Base size of the inner shapes in px
@@ -314,11 +342,11 @@ const Orb = ({ palette = colorPalettes.cosmicNebula, size = defaultSize, animati
     }, [animationSpeedBase, animationSpeedHue, mainOrbHueAnimation]);
     return (React.createElement("div", { ref: orbRef, style: Object.assign({}, cssVariables) },
         React.createElement("div", { className: "orb-main" },
-            React.createElement("div", { className: "glass loc-glass" }),
-            React.createElement("div", { className: "shape-a loc-a" }),
-            React.createElement("div", { className: "shape-b loc-b" }),
-            React.createElement("div", { className: "shape-c loc-c" }),
-            React.createElement("div", { className: "shape-d loc-d" }),
+            React.createElement("div", { className: "orb-glass orb-loc-glass" }),
+            React.createElement("div", { className: "orb-shape-a orb-loc-a" }),
+            React.createElement("div", { className: "orb-shape-b orb-loc-b" }),
+            React.createElement("div", { className: "orb-shape-c orb-loc-c" }),
+            React.createElement("div", { className: "orb-shape-d orb-loc-d" }),
             React.createElement(SvgElements, { color1: palette.mainBgStart, color2: palette.mainBgEnd }))));
 };
 
@@ -340,14 +368,19 @@ const galaxyPreset = {
     hueRotation: 360,
     mainOrbHueAnimation: defaultMainOrbHueAnimation,
 };
-const caribeanPreset = {
-    palette: colorPalettes.caribean,
+const caribbeanPreset = {
+    palette: colorPalettes.caribbean,
     size: defaultSize,
     animationSpeedBase: defaultAnimationSpeedBase,
     animationSpeedHue: defaultAnimationSpeedHue,
     hueRotation: defaultHueRotation,
     mainOrbHueAnimation: defaultMainOrbHueAnimation,
 };
+/**
+ * @deprecated Misspelled — use `caribbeanPreset`. Kept as an alias to the same
+ * object so code written against v1.1.0 and earlier keeps working.
+ */
+const caribeanPreset = caribbeanPreset;
 const cherryBlossomPreset = {
     palette: colorPalettes.cherryBlossom,
     size: defaultSize,
@@ -385,6 +418,7 @@ const volcanicPreset = {
 };
 
 exports.Orb = Orb;
+exports.caribbeanPreset = caribbeanPreset;
 exports.caribeanPreset = caribeanPreset;
 exports.cherryBlossomPreset = cherryBlossomPreset;
 exports.colorPalettes = colorPalettes;
@@ -393,4 +427,5 @@ exports.galaxyPreset = galaxyPreset;
 exports.goldenGlowPreset = goldenGlowPreset;
 exports.multiColorPreset = multiColorPreset;
 exports.oceanDepthsPreset = oceanDepthsPreset;
+exports.paletteNames = paletteNames;
 exports.volcanicPreset = volcanicPreset;

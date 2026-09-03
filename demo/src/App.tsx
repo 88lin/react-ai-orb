@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Orb } from "../../src";
-import { colorPalettes } from "../../src/palette/colorPalettes";
+import {
+  colorPalettes,
+  paletteNames,
+} from "../../src/palette/colorPalettes";
 import type { OrbPalette, ReactAIOrbProps } from "../../src";
 import {
   oceanDepthsPreset,
   galaxyPreset,
-  caribeanPreset,
+  caribbeanPreset,
   cherryBlossomPreset,
   emeraldPreset,
   multiColorPreset,
@@ -13,14 +16,17 @@ import {
   volcanicPreset,
 } from "../../src/presets";
 
-const paletteEntries = Object.entries(colorPalettes) as Array<
-  [string, OrbPalette]
->;
+// Driven by paletteNames rather than Object.entries, so the deprecated
+// `caribean` alias does not show up as a duplicate palette.
+const paletteEntries: Array<[string, OrbPalette]> = paletteNames.map((name) => [
+  name,
+  colorPalettes[name],
+]);
 
 const presets: Array<{ name: string; props: ReactAIOrbProps }> = [
   { name: "oceanDepths", props: oceanDepthsPreset },
   { name: "galaxy", props: galaxyPreset },
-  { name: "caribean", props: caribeanPreset },
+  { name: "caribbean", props: caribbeanPreset },
   { name: "cherryBlossom", props: cherryBlossomPreset },
   { name: "emerald", props: emeraldPreset },
   { name: "multiColor", props: multiColorPreset },

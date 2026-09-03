@@ -20,7 +20,7 @@ export type OrbPalette = {
 
 export type PaletteNames =
   | "cosmicNebula"
-  | "caribean"
+  | "caribbean"
   | "galaxy"
   | "oceanDepths"
   | "emerald"
@@ -30,6 +30,12 @@ export type PaletteNames =
 
 export type OrbPalettes = {
   [K in PaletteNames]: OrbPalette;
+} & {
+  /**
+   * @deprecated Misspelled — use `caribbean`. Kept as an alias to the same
+   * palette so code written against v1.1.0 and earlier keeps working.
+   */
+  caribean: OrbPalette;
 };
 
 export type ReactAIOrbProps = {

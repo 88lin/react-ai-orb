@@ -18,29 +18,29 @@
 
 /* Shape Locations */
 
-.loc-a {
+.orb-loc-a {
   position: absolute;
 }
 
-.loc-b {
+.orb-loc-b {
   position: absolute;
   left: 10%;
   top: 5%;
 }
 
-.loc-c {
+.orb-loc-c {
   position: absolute;
   left: 5%;
   top: 5%;
 }
 
-.loc-d {
+.orb-loc-d {
   position: absolute;
   left: 5%;
   top: 5%;
 }
 
-.loc-glass {
+.orb-loc-glass {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -49,7 +49,7 @@
 
 /* shape styles */
 
-.shape-a {
+.orb-shape-a {
   border-radius: 50%;
   height: var(--shapes-size);
   width: var(--shapes-size);
@@ -64,11 +64,10 @@
     hueShift var(--animation-hue-speed-base) linear infinite;
 }
 
-.shape-b {
+.orb-shape-b {
   border-radius: 50%;
   height: var(--shapes-size);
   width: var(--shapes-size);
-  border-radius: 50%;
   background: radial-gradient(
     circle at 33% 12%,
     var(--shape-b-start) 0%,
@@ -93,7 +92,7 @@
   mix-blend-mode: soft-light;
 }
 
-.shape-c {
+.orb-shape-c {
   height: var(--shapes-size);
   width: var(--shapes-size);
   border-radius: 50%;
@@ -121,7 +120,7 @@
   mix-blend-mode: color-dodge;
 }
 
-.shape-d {
+.orb-shape-d {
   height: var(--shapes-size);
   width: var(--shapes-size);
   border-radius: 50%;
@@ -149,7 +148,7 @@
   mix-blend-mode: color;
 }
 
-.glass {
+.orb-glass {
   height: var(--shapes-size);
   width: var(--shapes-size);
   opacity: 0.8;
@@ -159,7 +158,7 @@
     inset 0 3px 4px 0px rgba(255, 255, 255, 0.5);
 }
 
-.blob-a {
+.orb-blob-a {
   animation: rotateDiagonal
       calc(
         var(--animation-rotation-speed-base) +
@@ -175,7 +174,7 @@
   mix-blend-mode: screen;
 }
 
-.blob-b {
+.orb-blob-b {
   position: absolute;
   top: 0;
   opacity: var(--blob-b-opacity);
@@ -193,7 +192,7 @@
       linear infinite;
 }
 
-.blob-shine {
+.orb-blob-shine {
   position: absolute;
   top: 0;
   opacity: 0.9;
@@ -204,7 +203,7 @@
   filter: blur(15px);
 }
 
-.shine-b {
+.orb-shine-b {
   mix-blend-mode: plus-lighter;
   animation: expand-b 5s ease-in-out infinite;
   opacity: 0.3;
@@ -257,15 +256,21 @@
   }
 }
 
-@keyframes circleAnimation {
-  0% {
-    transform: rotate(-120deg);
-  }
-  50% {
-    transform: rotate(0);
-  }
-
-  100% {
-    transform: rotate(-120deg);
+/*
+ * Readers who ask their system to reduce motion get the orb as a still image:
+ * every layer keeps its colours and depth, only the endless rotation, hue shift
+ * and pulsing stop. Speed props then have nothing to drive, which the
+ * playbackRate effect handles on its own.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .orb-main,
+  .orb-shape-a,
+  .orb-shape-b,
+  .orb-shape-c,
+  .orb-shape-d,
+  .orb-blob-a,
+  .orb-blob-b,
+  .orb-blob-shine {
+    animation: none;
   }
 }

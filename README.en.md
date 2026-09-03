@@ -29,6 +29,7 @@ Perfect for AI interfaces, assistants, chatbots, or anywhere you need a glowing 
 - 🔄 **Live-tunable speed** — speed goes through the Web Animations `playbackRate`, so the orb accelerates from where it is instead of restarting
 - 📐 **Fully scalable** — stays crisp from a tiny inline status dot to a full-screen centerpiece
 - 💅 **Zero style setup** — CSS is inlined into the build output, so there is no extra stylesheet `import`
+- ♿ **Respects system preferences** — animation stops on its own when the system asks for reduced motion, leaving a still orb
 - 🧩 **TypeScript-first** — type definitions are committed alongside `dist/`, so completions work right after install
 - ⚛️ **Next.js friendly** — works with App Router; just use it as a client component
 
@@ -198,7 +199,7 @@ const BiggerAndFaster = () => (
 | :--- | :--- | :--- |
 | 🪼 `oceanDepthsPreset` | `oceanDepths` | Dimmer blob B |
 | 🌌 `galaxyPreset` | `galaxy` | Faster rotation, full 360° hue sweep, dimmer blob B |
-| 🌊 `caribeanPreset` | `caribean` | — |
+| 🌊 `caribbeanPreset` | `caribbean` | — |
 | 🌸 `cherryBlossomPreset` | `cherryBlossom` | Hue shift disabled |
 | ❇️ `emeraldPreset` | `emerald` | Hue shift disabled, dimmer blob B |
 | 🦄 `multiColorPreset` | `cosmicNebula` | Slow hue shift across the whole orb |
@@ -209,7 +210,12 @@ const BiggerAndFaster = () => (
 
 Eight palettes ship with the repository:
 
-`cosmicNebula` · `caribean` · `cherryBlossom` · `galaxy` · `oceanDepths` · `emerald` · `goldenGlow` · `volcanic`
+`cosmicNebula` · `caribbean` · `cherryBlossom` · `galaxy` · `oceanDepths` · `emerald` · `goldenGlow` · `volcanic`
+
+To walk every palette in order, use the exported `paletteNames` — it leaves out the legacy alias below.
+
+> [!NOTE]
+> This palette used to be called `caribean` (one `b` short). The correct spelling is now `caribbean`, and the old name is kept as an alias: `colorPalettes.caribean` and `caribeanPreset` still work, they are just marked deprecated in editors.
 
 ```jsx
 import { Orb, colorPalettes } from "react-ai-orb";
@@ -286,6 +292,27 @@ The component checks for `element.getAnimations` first and skips the speed logic
 
 </details>
 
+<details>
+<summary><b>What if the system asks for reduced motion?</b></summary>
+
+The component honours `prefers-reduced-motion: reduce`: rotation, hue shift and the pulsing highlights all stop. Colors and depth stay, so the orb simply renders as a still image.
+
+</details>
+
+<details>
+<summary><b>Can I override the component's styles?</b></summary>
+
+Yes. Every class is prefixed with `orb-` (`orb-main`, `orb-shape-a`, `orb-blob-a`, …), so you can target those selectors from your own stylesheet — and a `.glass` or `.shape-a` of your own will never leak into the orb.
+
+</details>
+
+<details>
+<summary><b>Can several orbs share a page?</b></summary>
+
+Yes. The internal SVG gradient ids are generated per instance with `useId`, so orbs with different palettes stay independent.
+
+</details>
+
 ## 🧰 Tech Stack
 
 | Tech | Role |
@@ -326,7 +353,7 @@ react-ai-orb/
 │   └── workflows/
 │       ├── deploy.yml          # deploys the demo to GitHub Pages
 │       └── star-history.yml    # regenerates the Star History chart weekly
-├── rollup.config.js
+├── rollup.config.mjs
 ├── tsconfig.json
 └── package.json
 ```

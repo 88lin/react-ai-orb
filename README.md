@@ -29,6 +29,7 @@
 - 🔄 **速度实时可调** — 通过 Web Animations 的 `playbackRate` 调速，球体从当前位置平滑加速，不会跳帧重启
 - 📐 **任意缩放** — 从内联状态点到全屏主视觉都清晰锐利
 - 💅 **样式零配置** — CSS 已内联进构建产物，不需要额外 `import` 任何样式文件
+- ♿ **尊重系统偏好** — 系统开启「减弱动态效果」时自动停止动画，只留静态球体
 - 🧩 **TypeScript 优先** — 类型定义随 `dist/` 一起提交，装完即有完整补全
 - ⚛️ **Next.js 友好** — 兼容 App Router，按客户端组件使用即可
 
@@ -198,7 +199,7 @@ const BiggerAndFaster = () => (
 | :--- | :--- | :--- |
 | 🪼 `oceanDepthsPreset` | `oceanDepths` | 光斑 B 更淡 |
 | 🌌 `galaxyPreset` | `galaxy` | 转速更快、360° 全幅变色、光斑 B 更淡 |
-| 🌊 `caribeanPreset` | `caribean` | — |
+| 🌊 `caribbeanPreset` | `caribbean` | — |
 | 🌸 `cherryBlossomPreset` | `cherryBlossom` | 关闭变色 |
 | ❇️ `emeraldPreset` | `emerald` | 关闭变色、光斑 B 更淡 |
 | 🦄 `multiColorPreset` | `cosmicNebula` | 全球缓慢变色 |
@@ -209,7 +210,12 @@ const BiggerAndFaster = () => (
 
 仓库内置 8 套调色板：
 
-`cosmicNebula` · `caribean` · `cherryBlossom` · `galaxy` · `oceanDepths` · `emerald` · `goldenGlow` · `volcanic`
+`cosmicNebula` · `caribbean` · `cherryBlossom` · `galaxy` · `oceanDepths` · `emerald` · `goldenGlow` · `volcanic`
+
+需要按顺序遍历全部调色板时，可以用导出的 `paletteNames`，它不含下面提到的旧拼写别名。
+
+> [!NOTE]
+> 这套配色早期叫 `caribean`（少一个 `b`）。现在正确拼写是 `caribbean`，旧名字作为别名保留，`colorPalettes.caribean` 与 `caribeanPreset` 仍然可用，只是在编辑器里会标为废弃。
 
 ```jsx
 import { Orb, colorPalettes } from "react-ai-orb";
@@ -286,6 +292,27 @@ const MyComponent = () => <Orb palette={midnight} />;
 
 </details>
 
+<details>
+<summary><b>系统开启了「减弱动态效果」会怎样？</b></summary>
+
+组件跟随 `prefers-reduced-motion: reduce`：旋转、变色和呼吸光斑全部停止，配色与层次保留，球体以静态形态呈现。
+
+</details>
+
+<details>
+<summary><b>能覆盖组件自带的样式吗？</b></summary>
+
+可以。所有 class 都带 `orb-` 前缀（`orb-main`、`orb-shape-a`、`orb-blob-a` 等），在你自己的样式表里按这些选择器覆盖即可；反过来，项目里同名的 `.glass`、`.shape-a` 也不会串到球体上。
+
+</details>
+
+<details>
+<summary><b>同一个页面放多个球体会互相干扰吗？</b></summary>
+
+不会。内部 SVG 渐变的 id 通过 `useId` 按实例生成，各自独立，多个不同配色的球体可以放在一起。
+
+</details>
+
 ## 🧰 技术栈
 
 | 技术 | 用途 |
@@ -326,7 +353,7 @@ react-ai-orb/
 │   └── workflows/
 │       ├── deploy.yml          # demo 自动部署到 GitHub Pages
 │       └── star-history.yml    # 每周生成 Star History 图
-├── rollup.config.js
+├── rollup.config.mjs
 ├── tsconfig.json
 └── package.json
 ```

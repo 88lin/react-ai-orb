@@ -28,14 +28,20 @@ export const galaxyPreset: ReactAIOrbProps = {
   mainOrbHueAnimation: defaultMainOrbHueAnimation,
 };
 
-export const caribeanPreset: ReactAIOrbProps = {
-  palette: colorPalettes.caribean,
+export const caribbeanPreset: ReactAIOrbProps = {
+  palette: colorPalettes.caribbean,
   size: defaultSize,
   animationSpeedBase: defaultAnimationSpeedBase,
   animationSpeedHue: defaultAnimationSpeedHue,
   hueRotation: defaultHueRotation,
   mainOrbHueAnimation: defaultMainOrbHueAnimation,
 };
+
+/**
+ * @deprecated Misspelled — use `caribbeanPreset`. Kept as an alias to the same
+ * object so code written against v1.1.0 and earlier keeps working.
+ */
+export const caribeanPreset = caribbeanPreset;
 
 export const cherryBlossomPreset: ReactAIOrbProps = {
   palette: colorPalettes.cherryBlossom,

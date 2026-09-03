@@ -17,9 +17,15 @@ export type OrbPalette = {
     shapeDMiddle: string;
     shapeDEnd: string;
 };
-export type PaletteNames = "cosmicNebula" | "caribean" | "galaxy" | "oceanDepths" | "emerald" | "cherryBlossom" | "goldenGlow" | "volcanic";
+export type PaletteNames = "cosmicNebula" | "caribbean" | "galaxy" | "oceanDepths" | "emerald" | "cherryBlossom" | "goldenGlow" | "volcanic";
 export type OrbPalettes = {
     [K in PaletteNames]: OrbPalette;
+} & {
+    /**
+     * @deprecated Misspelled — use `caribbean`. Kept as an alias to the same
+     * palette so code written against v1.1.0 and earlier keeps working.
+     */
+    caribean: OrbPalette;
 };
 export type ReactAIOrbProps = {
     palette?: OrbPalette;

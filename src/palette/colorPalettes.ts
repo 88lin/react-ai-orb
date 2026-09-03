@@ -1,6 +1,6 @@
-import { OrbPalettes } from "../types";
+import { OrbPalette, OrbPalettes, PaletteNames } from "../types";
 
-export const colorPalettes: OrbPalettes = {
+const palettes = {
   cosmicNebula: {
     mainBgStart: "rgb(236, 133, 255)",
     mainBgEnd: "rgb(49, 138, 255)",
@@ -21,7 +21,7 @@ export const colorPalettes: OrbPalettes = {
     shapeDEnd: "#00eeff",
   },
 
-  caribean: {
+  caribbean: {
     mainBgStart: "rgb(64, 224, 208)",
     mainBgEnd: "rgb(76, 189, 255)",
     shadowColor1: "rgba(8, 226, 255, 0)",
@@ -160,4 +160,24 @@ export const colorPalettes: OrbPalettes = {
     shapeDMiddle: "rgba(200, 30, 10, 0.7)",
     shapeDEnd: "rgba(255, 69, 0, 0.8)",
   },
+} satisfies Record<PaletteNames, OrbPalette>;
+
+export const colorPalettes: OrbPalettes = {
+  ...palettes,
+  // Shipped as `caribean` up to v1.1.0; the misspelling stays as an alias to the
+  // same palette so existing code keeps working.
+  caribean: palettes.caribbean,
 };
+
+// Canonical palette names, without the deprecated `caribean` alias — handy for
+// listing every palette exactly once (palette pickers, docs, tests).
+export const paletteNames = [
+  "cosmicNebula",
+  "caribbean",
+  "cherryBlossom",
+  "galaxy",
+  "oceanDepths",
+  "emerald",
+  "goldenGlow",
+  "volcanic",
+] as const satisfies readonly PaletteNames[];
