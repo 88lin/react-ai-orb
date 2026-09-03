@@ -4,10 +4,11 @@
 
 <img src="./.github/assets/banner.en.svg" alt="react-ai-orb" width="100%" />
 
-[![downloads](https://img.shields.io/npm/dm/react-ai-orb.svg?color=5f63f1&label=downloads)](https://www.npmjs.com/package/react-ai-orb)
-[![license](https://img.shields.io/npm/l/react-ai-orb.svg?color=5f63f1&label=license)](./LICENSE)
-[![types](https://img.shields.io/npm/types/react-ai-orb.svg?color=5f63f1&label=types)](https://www.typescriptlang.org/)
-[![live demo](https://img.shields.io/badge/live_demo-GitHub_Pages-5f63f1?logo=github&logoColor=white)](https://88lin.github.io/react-ai-orb/)
+[![live demo](https://img.shields.io/badge/live_demo-GitHub_Pages-3FB950?style=for-the-badge&logo=github&logoColor=white&labelColor=2EA043)](https://88lin.github.io/react-ai-orb/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=23272F)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=235A97)](https://www.typescriptlang.org/)
+[![downloads](https://img.shields.io/npm/dm/react-ai-orb?style=for-the-badge&color=8B5CF6&labelColor=6D28D9&logo=npm&logoColor=white)](https://www.npmjs.com/package/react-ai-orb)
+[![license](https://img.shields.io/npm/l/react-ai-orb?style=for-the-badge&color=14B8A6&labelColor=0F766E&logo=opensourceinitiative&logoColor=white)](./LICENSE)
 
 **A beautiful, customizable animated orb component for React.**
 Perfect for AI interfaces, assistants, chatbots, or anywhere you need a glowing orb. ✨
@@ -237,11 +238,3 @@ This project is built on top of
 [Steve0929/react-ai-orb](https://github.com/Steve0929/react-ai-orb) —
 many thanks to the original author [@Steve0929](https://github.com/Steve0929)
 for the excellent work.
-
----
-
-<div align="center">
-
-Made with 🔮 · [Live Demo](https://88lin.github.io/react-ai-orb/) · [Report an Issue](https://github.com/88lin/react-ai-orb/issues)
-
-</div>

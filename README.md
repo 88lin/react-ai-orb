@@ -4,7 +4,11 @@
 
 ![react-ai-orb](./.github/assets/banner.svg)
 
-![downloads](https://img.shields.io/npm/dm/react-ai-orb.svg?color=5f63f1\&label=downloads) ![license](https://img.shields.io/npm/l/react-ai-orb.svg?color=5f63f1\&label=license) ![types](https://img.shields.io/npm/types/react-ai-orb.svg?color=5f63f1\&label=types) ![在线预览](https://img.shields.io/badge/在线预览-GitHub_Pages-5f63f1?logo=github\&logoColor=white)
+[![在线预览](https://img.shields.io/badge/在线预览-GitHub_Pages-3FB950?style=for-the-badge&logo=github&logoColor=white&labelColor=2EA043)](https://88lin.github.io/react-ai-orb/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=23272F)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=235A97)](https://www.typescriptlang.org/)
+[![downloads](https://img.shields.io/npm/dm/react-ai-orb?style=for-the-badge&color=8B5CF6&labelColor=6D28D9&logo=npm&logoColor=white)](https://www.npmjs.com/package/react-ai-orb)
+[![license](https://img.shields.io/npm/l/react-ai-orb?style=for-the-badge&color=14B8A6&labelColor=0F766E&logo=opensourceinitiative&logoColor=white)](./LICENSE)
 
 **一个美观、可定制的 React 动画球体组件。**
 适合 AI 界面、智能助手、聊天机器人，或者任何需要一颗发光球体的地方 ✨
@@ -230,11 +234,3 @@ npm run dev
 
 本项目基于 [Steve0929/react-ai-orb](https://github.com/Steve0929/react-ai-orb) 二次开发，
 感谢原作者 [@Steve0929](https://github.com/Steve0929) 的出色工作。
-
----
-
-<div align="center">
-
-Made with 🔮 · [在线预览](https://88lin.github.io/react-ai-orb/) · [报告问题](https://github.com/88lin/react-ai-orb/issues)
-
-</div>
