@@ -10,7 +10,7 @@
 [![license](https://img.shields.io/npm/l/react-ai-orb?style=for-the-badge&color=14B8A6&labelColor=0F766E&logo=opensourceinitiative&logoColor=white)](./LICENSE)
 
 **一个美观、可定制的 React 动画球体组件。**
-适合 AI 界面、智能助手、聊天机器人，或者任何需要一颗发光球体的地方 ✨
+适合 AI 界面、智能助手、聊天机器人，或者任何需要一颗发光球体的地方✨
 
 **[🎧 在线预览](https://88lin.github.io/react-ai-orb/)** · [✨ 特性](#亮点) · [🚀 快速开始](#-快速开始) · [⚙️ Props](#️-props) · [📦 预设](#-预设) · [🎨 调色板](#-调色板)
 
@@ -292,8 +292,7 @@ npm run dev
 
 ## 🙏 致谢
 
-本项目基于 [Steve0929/react-ai-orb](https://github.com/Steve0929/react-ai-orb) 二次开发，  
-感谢原作者 [@Steve0929](https://github.com/Steve0929) 的出色工作。
+本项目基于 [Steve0929/react-ai-orb](https://github.com/Steve0929/react-ai-orb) 二次开发，感谢原作者 [@Steve0929](https://github.com/Steve0929) 的出色工作。
 
 ---
 
