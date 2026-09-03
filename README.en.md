@@ -38,7 +38,7 @@ Perfect for AI interfaces, assistants, chatbots, or anywhere you need a glowing 
 
 | Get started | Use it | Customize | Project |
 | :--- | :--- | :--- | :--- |
-| [🚀 Quick Start](#-quick-start)<br>[📦 Installation](#-installation) | [💻 Usage](#-usage)<br>[▲ Next.js](#-nextjs)<br>[❓ FAQ](#-faq) | [🔧 Props](#-props)<br>[🌈 Presets](#-presets)<br>[🎨 Palettes](#-palettes) | [🧰 Tech Stack](#-tech-stack)<br>[📁 Project Structure](#-project-structure)<br>[🧑‍💻 Development](#-development)<br>[🤝 Contributing](#-contributing) |
+| [🚀 Quick Start](#-quick-start)<br>[📦 Installation](#-installation) | [💻 Usage](#-usage)<br>[▲ Next.js](#-nextjs)<br>[❓ FAQ](#-faq) | [🔧 Props](#-props)<br>[🌈 Presets](#-presets)<br>[🎨 Palettes](#-palettes) | [🧰 Tech Stack](#-tech-stack)<br>[📁 Project Structure](#-project-structure)<br>[🔨 Development](#-development)<br>[🤝 Contributing](#-contributing) |
 
 ## 🚀 Quick Start
 
@@ -332,7 +332,7 @@ react-ai-orb/
 └── package.json
 ```
 
-## 🧑‍💻 Development
+## 🔨 Development
 
 ```bash
 git clone https://github.com/88lin/react-ai-orb.git
