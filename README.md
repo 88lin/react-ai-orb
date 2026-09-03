@@ -7,11 +7,12 @@
 [![在线预览](https://img.shields.io/badge/在线预览-GitHub_Pages-3FB950?style=for-the-badge&logo=github&logoColor=white&labelColor=2EA043)](https://88lin.github.io/react-ai-orb/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=23272F)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=235A97)](https://www.typescriptlang.org/)
-[![downloads](https://img.shields.io/npm/dm/react-ai-orb?style=for-the-badge&color=8B5CF6&labelColor=6D28D9&logo=npm&logoColor=white)](https://www.npmjs.com/package/react-ai-orb)
 [![license](https://img.shields.io/npm/l/react-ai-orb?style=for-the-badge&color=14B8A6&labelColor=0F766E&logo=opensourceinitiative&logoColor=white)](./LICENSE)
 
 **一个美观、可定制的 React 动画球体组件。**
 适合 AI 界面、智能助手、聊天机器人，或者任何需要一颗发光球体的地方 ✨
+
+**[🎧 在线预览](https://88lin.github.io/react-ai-orb/)** · [✨ 特性](#亮点) · [🚀 快速开始](#-快速开始) · [⚙️ Props](#️-props) · [📦 预设](#-预设) · [🎨 调色板](#-调色板) · [📦 npm](https://www.npmjs.com/package/react-ai-orb)
 
 </div>
 
@@ -21,14 +22,14 @@
 
 > 纯 CSS 驱动的发光球体，零运行时依赖，开箱即用。
 
-| | |
-| :--- | :--- |
+|                       |                                                       |
+| :-------------------- | :---------------------------------------------------- |
 | 🎨 **8 套调色板 · 8 个预设** | 内置 `cosmicNebula`、`galaxy`、`oceanDepths` 等，也支持完全自定义颜色 |
-| ⚡ **纯 CSS 动画** | 不依赖 canvas、WebGL 或任何动画库，性能轻盈 |
-| 🔄 **速度实时可调** | 运行时修改速度属性，球体从当前位置平滑加速，不会跳帧重启 |
-| 📐 **任意缩放** | 从内联状态点到全屏主视觉都清晰锐利 |
-| 🧩 **TypeScript 优先** | 类型定义随包发布，开发体验完整 |
-| ⚛️ **Next.js 友好** | 兼容 App Router，按客户端组件使用即可 |
+| ⚡ **纯 CSS 动画**        | 不依赖 canvas、WebGL 或任何动画库，性能轻盈                          |
+| 🔄 **速度实时可调**         | 运行时修改速度属性，球体从当前位置平滑加速，不会跳帧重启                          |
+| 📐 **任意缩放**           | 从内联状态点到全屏主视觉都清晰锐利                                     |
+| 🧩 **TypeScript 优先**  | 类型定义随包发布，开发体验完整                                       |
+| ⚛️ **Next.js 友好**     | 兼容 App Router，按客户端组件使用即可                              |
 
 ## 📑 目录
 
@@ -39,10 +40,12 @@
 - [⚙️ Props](#️-props)
 - [📦 预设](#-预设)
 - [🎨 调色板](#-调色板)
+- [🧰 技术栈](#-技术栈)
 - [👨‍💻 开发](#-开发)
 - [🤝 贡献](#-贡献)
 - [📄 许可证](#-许可证)
 - [🙏 致谢](#-致谢)
+- [⭐ Star History](#-star-history)
 
 ## 🚀 快速开始
 
@@ -68,8 +71,8 @@ pnpm add react-ai-orb
 yarn add react-ai-orb
 ```
 
-> **环境要求**：React 19（`react` / `react-dom` `^19.0.0` 为 peer 依赖）。
-> 仍在用 React 18？请安装 [`react-ai-orb@1.0.13`](https://www.npmjs.com/package/react-ai-orb/v/1.0.13)。
+> [!IMPORTANT]
+> 需要 React 19（`react` / `react-dom` `^19.0.0` 为 peer 依赖）。仍在用 React 18？请安装 [`react-ai-orb@1.0.13`](https://www.npmjs.com/package/react-ai-orb/v/1.0.13)。
 
 ## 💻 用法
 
@@ -123,17 +126,17 @@ import { Orb } from "react-ai-orb";
 
 所有属性均为可选。
 
-| Prop                  | 类型         | 默认值         | 说明 |
-| --------------------- | ------------ | -------------- | ---- |
+| Prop                  | 类型           | 默认值            | 说明                        |
+| --------------------- | ------------ | -------------- | ------------------------- |
 | `palette`             | `OrbPalette` | `cosmicNebula` | 球体配色，可用[内置调色板](#-调色板)或自定义 |
-| `size`                | `number`     | `1`            | 尺寸倍数，基于 82px 基准直径 |
-| `animationSpeedBase`  | `number`     | `1`            | 旋转速度倍数，可运行时修改、平滑过渡 |
-| `animationSpeedHue`   | `number`     | `1`            | 变色速度倍数，同样支持运行时修改 |
-| `hueRotation`         | `number`     | `120`          | 色相动画的偏移角度（度） |
-| `mainOrbHueAnimation` | `boolean`    | `false`        | 是否对主球体也应用色相动画 |
-| `blobAOpacity`        | `number`     | `0.3`          | 光斑 A 的不透明度（`0` ~ `1`） |
-| `blobBOpacity`        | `number`     | `0.8`          | 光斑 B 的不透明度（`0` ~ `1`） |
-| `noShadow`            | `boolean`    | `false`        | 移除球体投影 |
+| `size`                | `number`     | `1`            | 尺寸倍数，基于 82px 基准直径         |
+| `animationSpeedBase`  | `number`     | `1`            | 旋转速度倍数，可运行时修改、平滑过渡        |
+| `animationSpeedHue`   | `number`     | `1`            | 变色速度倍数，同样支持运行时修改          |
+| `hueRotation`         | `number`     | `120`          | 色相动画的偏移角度（度）              |
+| `mainOrbHueAnimation` | `boolean`    | `false`        | 是否对主球体也应用色相动画             |
+| `blobAOpacity`        | `number`     | `0.3`          | 光斑 A 的不透明度（`0` ~ `1`）     |
+| `blobBOpacity`        | `number`     | `0.8`          | 光斑 B 的不透明度（`0` ~ `1`）     |
+| `noShadow`            | `boolean`    | `false`        | 移除球体投影                    |
 
 ## 📦 预设
 
@@ -152,16 +155,16 @@ const BiggerAndFaster = () => (
 );
 ```
 
-| 预设                     | 调色板          | 额外调整 |
-| ------------------------ | --------------- | -------- |
-| 🪼 `oceanDepthsPreset`   | `oceanDepths`   | 光斑 B 更淡 |
+| 预设                       | 调色板             | 额外调整                   |
+| ------------------------ | --------------- | ---------------------- |
+| 🪼 `oceanDepthsPreset`   | `oceanDepths`   | 光斑 B 更淡                |
 | 🌌 `galaxyPreset`        | `galaxy`        | 转速更快、360° 全幅变色、光斑 B 更淡 |
-| 🌊 `caribeanPreset`      | `caribean`      | — |
-| 🌸 `cherryBlossomPreset` | `cherryBlossom` | 关闭变色 |
-| ❇️ `emeraldPreset`       | `emerald`       | 关闭变色、光斑 B 更淡 |
-| 🦄 `multiColorPreset`    | `cosmicNebula`  | 全球缓慢变色 |
-| ☀️ `goldenGlowPreset`    | `goldenGlow`    | 关闭变色、光斑 B 更淡 |
-| 🌋 `volcanicPreset`      | `volcanic`      | 关闭变色、光斑 B 更淡 |
+| 🌊 `caribeanPreset`      | `caribean`      | —                      |
+| 🌸 `cherryBlossomPreset` | `cherryBlossom` | 关闭变色                   |
+| ❇️ `emeraldPreset`       | `emerald`       | 关闭变色、光斑 B 更淡           |
+| 🦄 `multiColorPreset`    | `cosmicNebula`  | 全球缓慢变色                 |
+| ☀️ `goldenGlowPreset`    | `goldenGlow`    | 关闭变色、光斑 B 更淡           |
+| 🌋 `volcanicPreset`      | `volcanic`      | 关闭变色、光斑 B 更淡           |
 
 ## 🎨 调色板
 
@@ -192,20 +195,30 @@ const MyComponent = () => <Orb palette={midnight} />;
 ```
 
 <details>
+
 <summary><b>全部 <code>OrbPalette</code> 属性</b></summary>
 
 球体由一个主球加四个旋转内形构成。B、C、D 三个内形是三段渐变，A 是两段渐变。
 
-| 属性                                          | 类型     | 说明 |
-| --------------------------------------------- | -------- | ---- |
-| `mainBgStart` / `mainBgEnd`                   | `string` | 主球背景渐变 |
-| `shadowColor1` … `shadowColor4`               | `string` | 四层投影颜色 |
-| `shapeAStart` / `shapeAEnd`                   | `string` | 内形 A 渐变 |
-| `shapeBStart` / `shapeBMiddle` / `shapeBEnd`  | `string` | 内形 B 渐变 |
-| `shapeCStart` / `shapeCMiddle` / `shapeCEnd`  | `string` | 内形 C 渐变 |
-| `shapeDStart` / `shapeDMiddle` / `shapeDEnd`  | `string` | 内形 D 渐变 |
+| 属性                                           | 类型       | 说明      |
+| -------------------------------------------- | -------- | ------- |
+| `mainBgStart` / `mainBgEnd`                  | `string` | 主球背景渐变  |
+| `shadowColor1` … `shadowColor4`              | `string` | 四层投影颜色  |
+| `shapeAStart` / `shapeAEnd`                  | `string` | 内形 A 渐变 |
+| `shapeBStart` / `shapeBMiddle` / `shapeBEnd` | `string` | 内形 B 渐变 |
+| `shapeCStart` / `shapeCMiddle` / `shapeCEnd` | `string` | 内形 C 渐变 |
+| `shapeDStart` / `shapeDMiddle` / `shapeDEnd` | `string` | 内形 D 渐变 |
 
 </details>
+
+## 🧰 技术栈
+
+| 技术 | 描述 |
+|------|------|
+| [React 19](https://react.dev/) | UI 库，peer 依赖 |
+| [TypeScript](https://www.typescriptlang.org/) | 类型安全，类型随包发布 |
+| [Rollup](https://rollupjs.org/) | 打包到 `dist/` |
+| 纯 CSS 动画 | 无 canvas / WebGL / 动画库，零运行时依赖 |
 
 ## 👨‍💻 开发
 
@@ -232,5 +245,24 @@ npm run dev
 
 ## 🙏 致谢
 
-本项目基于 [Steve0929/react-ai-orb](https://github.com/Steve0929/react-ai-orb) 二次开发，
+本项目基于 [Steve0929/react-ai-orb](https://github.com/Steve0929/react-ai-orb) 二次开发，  
 感谢原作者 [@Steve0929](https://github.com/Steve0929) 的出色工作。
+
+---
+
+## ⭐ Star History
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=88lin/react-ai-orb&type=Date&theme=dark">
+  <img alt="Star History" src="https://api.star-history.com/svg?repos=88lin/react-ai-orb&type=Date">
+</picture>
+
+---
+
+<div align="center">
+
+**如果这个项目对你有帮助，给个 ⭐ Star 支持一下吧！**
+
+Made with 🔮 by [88lin](https://github.com/88lin)
+
+</div>

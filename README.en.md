@@ -7,11 +7,12 @@
 [![live demo](https://img.shields.io/badge/live_demo-GitHub_Pages-3FB950?style=for-the-badge&logo=github&logoColor=white&labelColor=2EA043)](https://88lin.github.io/react-ai-orb/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=23272F)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=235A97)](https://www.typescriptlang.org/)
-[![downloads](https://img.shields.io/npm/dm/react-ai-orb?style=for-the-badge&color=8B5CF6&labelColor=6D28D9&logo=npm&logoColor=white)](https://www.npmjs.com/package/react-ai-orb)
 [![license](https://img.shields.io/npm/l/react-ai-orb?style=for-the-badge&color=14B8A6&labelColor=0F766E&logo=opensourceinitiative&logoColor=white)](./LICENSE)
 
 **A beautiful, customizable animated orb component for React.**
 Perfect for AI interfaces, assistants, chatbots, or anywhere you need a glowing orb. ✨
+
+**[🎧 Live Demo](https://88lin.github.io/react-ai-orb/)** · [✨ Features](#highlights) · [🚀 Quick Start](#-quick-start) · [⚙️ Props](#️-props) · [📦 Presets](#-presets-1) · [🎨 Palettes](#-palettes) · [📦 npm](https://www.npmjs.com/package/react-ai-orb)
 
 </div>
 
@@ -39,10 +40,12 @@ Perfect for AI interfaces, assistants, chatbots, or anywhere you need a glowing 
 - [⚙️ Props](#️-props)
 - [📦 Presets](#-presets-1)
 - [🎨 Palettes](#-palettes)
+- [🧰 Tech Stack](#-tech-stack)
 - [👨‍💻 Development](#-development)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
 - [🙏 Acknowledgments](#-acknowledgments)
+- [⭐ Star History](#-star-history)
 
 ## 🚀 Quick Start
 
@@ -68,8 +71,8 @@ pnpm add react-ai-orb
 yarn add react-ai-orb
 ```
 
-> **Requirements:** React 19 — `react` / `react-dom` `^19.0.0` are peer dependencies.
-> Still on React 18? Install [`react-ai-orb@1.0.13`](https://www.npmjs.com/package/react-ai-orb/v/1.0.13).
+> [!IMPORTANT]
+> Requires React 19 — `react` / `react-dom` `^19.0.0` are peer dependencies. Still on React 18? Install [`react-ai-orb@1.0.13`](https://www.npmjs.com/package/react-ai-orb/v/1.0.13).
 
 ## 💻 Usage
 
@@ -209,6 +212,15 @@ and D take a three-stop gradient; shape A takes two.
 
 </details>
 
+## 🧰 Tech Stack
+
+| Tech | Description |
+|------|-------------|
+| [React 19](https://react.dev/) | UI library, peer dependency |
+| [TypeScript](https://www.typescriptlang.org/) | Type-safe, types shipped in package |
+| [Rollup](https://rollupjs.org/) | Bundles to `dist/` |
+| CSS-only animation | No canvas / WebGL / animation lib, zero runtime deps |
+
 ## 👨‍💻 Development
 
 ```bash
@@ -238,3 +250,22 @@ This project is built on top of
 [Steve0929/react-ai-orb](https://github.com/Steve0929/react-ai-orb) —
 many thanks to the original author [@Steve0929](https://github.com/Steve0929)
 for the excellent work.
+
+---
+
+## ⭐ Star History
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=88lin/react-ai-orb&type=Date&theme=dark">
+  <img alt="Star History" src="https://api.star-history.com/svg?repos=88lin/react-ai-orb&type=Date">
+</picture>
+
+---
+
+<div align="center">
+
+**If this project helps you, give it a ⭐ Star!**
+
+Made with 🔮 by [88lin](https://github.com/88lin)
+
+</div>
