@@ -299,8 +299,8 @@ npm run dev
 ## ⭐ Star History
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=88lin/react-ai-orb&type=Date&theme=dark">
-  <img alt="Star History" src="https://api.star-history.com/svg?repos=88lin/react-ai-orb&type=Date">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/88lin/react-ai-orb/star-history/assets/my-star-history/star-history-dark.svg">
+  <img alt="Star History" src="https://raw.githubusercontent.com/88lin/react-ai-orb/star-history/assets/my-star-history/star-history-light.svg">
 </picture>
 
 ---
