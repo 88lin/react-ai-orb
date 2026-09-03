@@ -84,10 +84,11 @@ body {
   color: var(--ink);
 }
 
+/* 只画焦点环，不要动元素本身的圆角——outline 会自动沿着元素的圆角走。
+   之前这里写了 border-radius: 4px，把 .pill 的胶囊形状在聚焦时压成了方角。 */
 :is(button, a, input, select):focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
-  border-radius: 4px;
 }
 
 /* auto 外边距居中：内容比视口高时也不会把顶部裁掉 */
